@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
+
+table {
+    border-spacing: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin: 100px auto auto;
+    font-size: calc(2vmax + 4px);
+    min-font-size: 400%;
+    text-shadow: 0 0 8px black, 0 0 11px black;
+}
+
+td {
+    font-family: Cormorant Garamond, serif;
+    width: 20%;
+    position: relative;
+    background-position: center;
+    background-size: 150%;
+}
+
+td:after {
+    content: '';
+    display: block;
+    margin-top: 100%;
+}
+
+td a {
+    color: inherit;
+}
+
+td div {
+    display: table-cell;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding-top: 38%;
+    box-shadow: inset 0 0 2vmax black;
+}
+
+td:hover {
+    zoom: 1.1;
+}
+
+#aries {
+    background-image: url(../images/aries.png);
+}
+
+#taurus {
+    background-image: url(../images/taurus.png);
+}
+
+#gemini {
+    background-image: url(../images/gemini.png);
+}
+
+#cancer {
+    background-image: url(../images/cancer.png);
+}
+
+#leo {
+    background-image: url(../images/leo.png);
+}
+
+#virgo {
+    background-image: url(../images/virgo.png);
+}
+
+#libra {
+    background-image: url(../images/libra.png);
+}
+
+#scorpio {
+    background-image: url(../images/scorpio.png);
+}
+
+#sagittarius {
+    background-image: url(../images/sagittarius.png);
+}
+
+#capricorn {
+    background-image: url(../images/capricorn.png);
+}
+
+#aquarius {
+    background-image: url(../images/aquarius.png);
+}
+
+#pisces {
+    background-image: url(../images/pisces.png);
+}

@@ -1,0 +1,28 @@
+body {
+    color: white;
+    background-color: black;
+}
+
+body::before {
+    z-index: -1;
+    filter: blur(5px);
+}
+
+h1 {
+    text-align: center;
+    margin: auto;
+    font-size: 40px;
+    text-shadow: 0 0 8px darkblue, 0 0 3px black;
+}
+
+.parallax-layer {
+    background-image: url(../images/main_background_image.jpg);
+    position: fixed;
+    background-size: cover;
+    background-position: center;
+    top: -5%;
+    left: -5%;
+    width: 120%;
+    height: 120%;
+    object-fit: cover;
+}
