@@ -3,11 +3,6 @@ body {
     background-color: black;
 }
 
-body::before {
-    z-index: -1;
-    filter: blur(5px);
-}
-
 h1 {
     text-align: center;
     margin: auto;
@@ -25,4 +20,12 @@ h1 {
     width: 120%;
     height: 120%;
     object-fit: cover;
+    z-index: -10;
+}
+
+a:active,
+a:hover,  
+a {
+    text-decoration: none;
+    color: white;
 }
