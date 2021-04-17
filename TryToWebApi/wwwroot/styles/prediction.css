@@ -1,0 +1,32 @@
+﻿#main_field {
+    min-width: 640px;
+    width: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    margin: 0 auto;
+}
+
+main {
+    margin: 0 100px;
+}
+
+h1 {
+    margin-bottom: 5pt;
+}
+
+#date {
+    width: 200px;
+    text-align: center;
+    font-size: 42px;
+    padding-bottom: 2pt;
+    float: left;
+}
+
+#main-text {
+    font-size: 24px;
+    white-space: pre-wrap;
+}
+
+footer address {
+    padding-top: 24px;
+    text-align: right;
+}

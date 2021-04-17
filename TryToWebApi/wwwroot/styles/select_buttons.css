@@ -1,13 +1,10 @@
-﻿@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
-
-* {
+﻿* {
     margin: 0;
     padding: 0;
 }
 
 #main_button_container {
     text-shadow: 0 0 8px black, 0 0 11px black;
-    font-family: Cormorant Garamond, serif;
     margin: calc(150px + -1 * 5%) auto auto;
     width: 300px;
     text-align: center;
