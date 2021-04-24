@@ -1,6 +1,6 @@
 ﻿namespace TryToWebApi.objects
 {
-    public enum TimeInterval
+    public enum TimeIntervalType
     {
         Today,
         Tomorrow,
