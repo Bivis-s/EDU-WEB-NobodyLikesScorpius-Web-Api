@@ -2,6 +2,7 @@
 
 namespace DatabaseConnection.attributes
 {
+    [AttributeUsage(AttributeTargets.Class)]
     public class TableName : Attribute
     {
         public TableName(string value)
