@@ -1,13 +1,11 @@
-﻿using TryToWebApi.objects;
+﻿using DatabaseConnection.attributes;
+using TryToWebApi.objects;
 
 namespace DatabaseConnection.entities
 {
+    [TableName("zodiacs")]
     public class Zodiac
     {
-        public int Id { get; }
-        public string Name { get; set; }
-        public ZodiacType Type { get; set; }
-
         public Zodiac(int id, string name, ZodiacType type)
         {
             Id = id;
@@ -20,5 +18,11 @@ namespace DatabaseConnection.entities
             Name = name;
             Type = type;
         }
+
+        [SerializableName("id")] public int Id { get; }
+
+        [SerializableName("name")] public string Name { get; set; }
+
+        [SerializableName("enum_number")] public ZodiacType Type { get; set; }
     }
 }

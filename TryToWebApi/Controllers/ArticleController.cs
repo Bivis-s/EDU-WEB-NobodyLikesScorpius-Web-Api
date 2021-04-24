@@ -15,8 +15,10 @@ namespace TryToWebApi.Controllers
             Console.WriteLine((ZodiacType) zodiac);
             return new Article[]
             {
-                new ("Учёные нашли лучший знак зодиака!" + zodiac, "Кто-то сказал, что водолеи лучше всех, мы им верим)", ZodiacType.Aquarius),
-                new ("Астрологи объявили неделю ебашилова" + zodiac, "Вас ждёт хорошая продуктивная следующая неделя", ZodiacType.Pisces)
+                new("Учёные нашли лучший знак зодиака!" + zodiac, "Кто-то сказал, что водолеи лучше всех, мы им верим)",
+                    ZodiacType.Aquarius),
+                new("Астрологи объявили неделю ебашилова" + zodiac, "Вас ждёт хорошая продуктивная следующая неделя",
+                    ZodiacType.Pisces)
             };
         }
     }

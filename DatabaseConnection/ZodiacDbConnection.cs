@@ -1,9 +1,6 @@
-﻿using System;
-
-namespace DatabaseConnection
+﻿namespace DatabaseConnection
 {
     public class ZodiacDbConnection
     {
-        
     }
 }

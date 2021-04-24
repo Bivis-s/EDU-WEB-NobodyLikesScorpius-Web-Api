@@ -1,15 +1,11 @@
-﻿using TryToWebApi.objects;
+﻿using DatabaseConnection.attributes;
+using TryToWebApi.objects;
 
 namespace DatabaseConnection.entities
 {
+    [TableName("time_intervals")]
     public class TimeInterval
     {
-        public int Id { get; }
-        
-        public string Name { get; set; }
-        
-        public TimeIntervalType Type { get; set; }
-
         public TimeInterval(int id, string name, TimeIntervalType type)
         {
             Id = id;
@@ -22,5 +18,11 @@ namespace DatabaseConnection.entities
             Name = name;
             Type = type;
         }
+
+        [SerializableName("id")] public int Id { get; }
+
+        [SerializableName("name")] public string Name { get; set; }
+
+        [SerializableName("enum_number")] public TimeIntervalType Type { get; set; }
     }
 }

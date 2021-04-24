@@ -1,14 +1,7 @@
-﻿
-namespace TryToWebApi.objects
+﻿namespace TryToWebApi.objects
 {
     public class Article
     {
-        public string Title { get; set; }
-        
-        public string Content { get; set; }
-        
-        public ZodiacType ZodiacType { get; set; }
-
         public Article()
         {
         }
@@ -19,5 +12,11 @@ namespace TryToWebApi.objects
             Content = content;
             ZodiacType = zodiacType;
         }
+
+        public string Title { get; set; }
+
+        public string Content { get; set; }
+
+        public ZodiacType ZodiacType { get; set; }
     }
 }
