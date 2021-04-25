@@ -2,7 +2,7 @@ using NUnit.Framework;
 
 namespace DatabaseConnectionTest
 {
-    public class Tests
+    public class DatabaseTests
     {
         [SetUp]
         public void Setup()

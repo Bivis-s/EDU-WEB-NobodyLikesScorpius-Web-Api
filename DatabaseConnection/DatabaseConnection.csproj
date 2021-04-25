@@ -5,15 +5,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\TryToWebApi\TryToWebApi.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
       <PackageReference Include="System.Data.SQLite" Version="1.0.113.7" />
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="factories" />
+      <ProjectReference Include="..\WebApiSite\WebApiSite.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TryToWebApi", "TryToWebApi\TryToWebApi.csproj", "{70EC7641-BFF8-438B-8836-98580912B286}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiSite", "WebApiSite\WebApiSite.csproj", "{70EC7641-BFF8-438B-8836-98580912B286}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseConnection", "DatabaseConnection\DatabaseConnection.csproj", "{F1D1166F-82F6-46A3-A6E1-0D05B850A2B1}"
 EndProject

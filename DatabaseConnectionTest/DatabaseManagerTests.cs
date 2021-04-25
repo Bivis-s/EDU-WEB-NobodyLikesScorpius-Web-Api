@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace DatabaseConnectionTest
 {
     [TestFixture]
-    public class DatabaseManagerTest
+    public class DatabaseManagerTests
     {
         [Test]
         public void GetSqlConnection()

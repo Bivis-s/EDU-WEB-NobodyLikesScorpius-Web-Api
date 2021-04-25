@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 
 namespace DatabaseConnection.attributes
 {
@@ -10,6 +12,21 @@ namespace DatabaseConnection.attributes
             Value = value;
         }
 
-        public string Value { get; set; }
+        private string Value { get; set; }
+        
+        public static string GetSerializableName(Type type, string propertyName)
+        {
+            var attribute = type
+                .GetProperty(propertyName)?
+                .GetCustomAttribute<SerializableName>()?
+                .Value;
+
+            if (attribute != null)
+            {
+                return attribute;
+            }
+
+            throw new ArgumentException($"Property {propertyName} in type {type.Name} has no attribute SerializableName or such property doesn't exists");
+        }
     }
 }
