@@ -10,7 +10,7 @@ namespace DatabaseConnection.db_connections
 
         List<Prediction> GetPredictions(Zodiac zodiac, TimeInterval timeInterval);
 
-        Zodiac GetZodiac(ZodiacType type);
+        Zodiac GetZodiac(ZodiacType zodiacType);
 
         void SaveTimeInterval(TimeInterval timeInterval);
 

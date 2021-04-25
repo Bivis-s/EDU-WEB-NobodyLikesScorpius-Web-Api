@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SQLite;
 using DatabaseConnection.entities;
+using DatabaseConnection.factories;
 using TryToWebApi.objects;
 
 namespace DatabaseConnection.db_connections
@@ -17,9 +19,17 @@ namespace DatabaseConnection.db_connections
             throw new NotImplementedException();
         }
 
-        public Zodiac GetZodiac(ZodiacType type)
+        public Zodiac GetZodiac(ZodiacType zodiacType) //TODO make enum_number in db table UNIQUE
         {
-            throw new NotImplementedException();
+            var connection = DatabaseConnectionManager.GetSqlConnection().OpenAndReturn();
+            var command = connection.CreateCommand();
+            command.Connection = connection;
+            command.CommandText = "select id, name, enum_number from zodiacs where enum_number = :enum_number;";
+            command.Parameters.AddWithValue("enum_number", (int) zodiacType);
+            var zodiac = ZodiacFactory.CreateZodiac(command.ExecuteReader());
+            command.Dispose();
+            connection.Dispose();
+            return zodiac;
         }
 
         public void SaveTimeInterval(TimeInterval timeInterval)
