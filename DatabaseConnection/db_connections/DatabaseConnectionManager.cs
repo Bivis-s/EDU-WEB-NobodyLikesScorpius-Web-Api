@@ -12,7 +12,7 @@ namespace DatabaseConnection.db_connections
         private static string GetConnectionString()
         {
             // return $"Data Source={Path.GetFullPath("DatabaseConnection/zodiacs.sqlite")};"; TODO optimize
-            return @"Data Source=C:\Users\user\RiderProjects\EDU-WEB-NobodyLikesScorpius-Web-Api\DatabaseConnection\zodiacs.sqlite";
+            return @"Data Source=C:\Users\Anton\RiderProjects\TryToWebApi\TryToWebApi\DatabaseConnection\zodiacs.sqlite";
         }
 
         public static SQLiteConnection GetSqlConnection()

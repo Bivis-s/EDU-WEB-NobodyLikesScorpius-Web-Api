@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SQLite;
+using DatabaseConnection.attributes;
 using DatabaseConnection.entities;
 using DatabaseConnection.factories;
 using TryToWebApi.objects;
@@ -32,19 +33,29 @@ namespace DatabaseConnection.db_connections
             return zodiac;
         }
 
-        public void SaveTimeInterval(TimeInterval timeInterval)
+        public void Save(TimeInterval timeInterval)
         {
             throw new NotImplementedException();
         }
 
-        public void SavePrediction(Prediction prediction)
+        public void Save(Prediction prediction)
         {
             throw new NotImplementedException();
         }
 
-        public void SaveZodiac(Zodiac zodiac)
+        public void Save(Zodiac zodiac)
         {
-            throw new NotImplementedException();
+            var tableName = TableName.GetTableName(zodiac.GetType());
+            var nameColumn = SerializableName.GetSerializableName(zodiac.GetType(), "Name");
+            var typeColumn = SerializableName.GetSerializableName(zodiac.GetType(), "Type");
+            
+            using var connection = DatabaseConnectionManager.GetSqlConnection().OpenAndReturn();
+            using var command = connection.CreateCommand();
+            command.Connection = connection;
+            command.CommandText = $"insert into {tableName}({nameColumn}, {typeColumn}) values (:name, :type);";
+            command.Parameters.AddWithValue("type", (int) zodiac.Type);
+            command.Parameters.AddWithValue("name", zodiac.Name);
+            command.ExecuteNonQuery();
         }
 
         private List<Zodiac> GetZodiacs()

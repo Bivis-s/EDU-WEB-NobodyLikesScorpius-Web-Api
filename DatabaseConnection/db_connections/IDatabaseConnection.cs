@@ -12,10 +12,10 @@ namespace DatabaseConnection.db_connections
 
         Zodiac GetZodiac(ZodiacType zodiacType);
 
-        void SaveTimeInterval(TimeInterval timeInterval);
+        void Save(TimeInterval timeInterval);
 
-        void SavePrediction(Prediction prediction);
+        void Save(Prediction prediction);
 
-        void SaveZodiac(Zodiac zodiac);
+        void Save(Zodiac zodiac);
     }
 }
