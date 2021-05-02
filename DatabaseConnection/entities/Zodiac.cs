@@ -30,32 +30,16 @@ namespace DatabaseConnection.entities
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != GetType()) return false;
+            if (obj.GetType() != this.GetType()) return false;
             return Equals((Zodiac) obj);
-        }
-        
-        public bool EqualsWithoutId(object obj)
-        {
-            if (Equals(obj)) return true;
-            return EqualsWithoutId((Zodiac) obj);
         }
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(Id, Name, (int) Type);
-        }
-
-        public override string ToString()
-        {
-            return $"{nameof(Id)}: {Id}, {nameof(Name)}: {Name}, {nameof(Type)}: {Type}";
+            return HashCode.Combine(Name, (int) Type);
         }
 
         private bool Equals(Zodiac other)
-        {
-            return Id == other.Id && Name == other.Name && Type == other.Type;
-        }
-
-        private bool EqualsWithoutId(Zodiac other)
         {
             return Name == other.Name && Type == other.Type;
         }

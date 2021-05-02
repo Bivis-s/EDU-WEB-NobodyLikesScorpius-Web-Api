@@ -1,4 +1,5 @@
-﻿using DatabaseConnection.attributes;
+﻿using System;
+using DatabaseConnection.attributes;
 using TryToWebApi.objects;
 
 namespace DatabaseConnection.entities
@@ -24,5 +25,23 @@ namespace DatabaseConnection.entities
         [SerializableName("name")] public string Name { get; set; }
 
         [SerializableName("enum_number")] public TimeIntervalType Type { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((TimeInterval) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Name, (int) Type);
+        }
+
+        private bool Equals(TimeInterval other)
+        {
+            return Name == other.Name && Type == other.Type;
+        }
     }
 }

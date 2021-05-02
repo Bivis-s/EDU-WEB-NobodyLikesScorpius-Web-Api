@@ -1,14 +1,13 @@
-﻿using System.Collections.Generic;
-using DatabaseConnection.entities;
+﻿using DatabaseConnection.entities;
 using TryToWebApi.objects;
 
 namespace DatabaseConnection.db_connections
 {
     public interface IDatabaseConnection
     {
-        List<TimeInterval> GetTimeIntervals();
+        TimeInterval GetTimeIntervals(TimeIntervalType timeIntervalType);
 
-        List<Prediction> GetPredictions(Zodiac zodiac, TimeInterval timeInterval);
+        Prediction GetPredictions(Zodiac zodiac, TimeInterval timeInterval);
 
         Zodiac GetZodiac(ZodiacType zodiacType);
 
@@ -17,5 +16,7 @@ namespace DatabaseConnection.db_connections
         void Save(Prediction prediction);
 
         void Save(Zodiac zodiac);
+
+        void ClearAll();
     }
 }

@@ -1,4 +1,5 @@
-﻿using DatabaseConnection.attributes;
+﻿using System;
+using DatabaseConnection.attributes;
 
 namespace DatabaseConnection.entities
 {
@@ -17,5 +18,23 @@ namespace DatabaseConnection.entities
         [SerializableName("time_interval_id")] public TimeInterval TimeInterval { get; set; }
 
         [SerializableName("text_value")] public string Text { get; set; }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            if (obj.GetType() != this.GetType()) return false;
+            return Equals((Prediction) obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(TimeInterval, Text);
+        }
+
+        private bool Equals(Prediction other)
+        {
+            return Equals(TimeInterval, other.TimeInterval) && Text == other.Text;
+        }
     }
 }
