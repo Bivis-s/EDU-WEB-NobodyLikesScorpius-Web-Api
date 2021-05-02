@@ -8,9 +8,9 @@ namespace DatabaseConnectionTest
 {
     public class DatabaseConnectionTests
     {
-        private IDatabaseConnection _connection;
-        private Zodiac _actualZodiac;
         private TimeInterval _actualTimeIntervals;
+        private Zodiac _actualZodiac;
+        private IDatabaseConnection _connection;
 
         [SetUp]
         public void Setup()
@@ -18,7 +18,8 @@ namespace DatabaseConnectionTest
             _connection = new ZodiacDbConnection();
         }
 
-        [Test, Order(1)]
+        [Test]
+        [Order(1)]
         public void SaveAndGetZodiac()
         {
             var expectedZodiac = new Zodiac("Scorpion", ZodiacType.Scorpius);
@@ -28,7 +29,8 @@ namespace DatabaseConnectionTest
                 $"Returned from db Zodiac '{_actualZodiac}' is not equal to saved in db Zodiac '{expectedZodiac}'");
         }
 
-        [Test, Order(2)]
+        [Test]
+        [Order(2)]
         public void SaveAndGetTimeInterval()
         {
             var expectedTimeInterval = new TimeInterval("На сегодня", TimeIntervalType.Today);
@@ -38,7 +40,8 @@ namespace DatabaseConnectionTest
                 $"Returned from db TimeIntervals '{_actualTimeIntervals}' didn't contain saved in db TimeInterval '{expectedTimeInterval}'");
         }
 
-        [Test, Order(3)]
+        [Test]
+        [Order(3)]
         public void SaveAndGetPrediction()
         {
             var expectedPrediction = new Prediction(_actualZodiac, _actualTimeIntervals,

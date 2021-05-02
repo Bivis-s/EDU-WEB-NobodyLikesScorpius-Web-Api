@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data.SQLite;
-using DatabaseConnection.attributes;
+﻿using System.Data.SQLite;
 using DatabaseConnection.entities;
 using DatabaseConnection.factories;
 using TryToWebApi.objects;
@@ -9,15 +7,14 @@ namespace DatabaseConnection.db_connections
 {
     public class DatabaseConnection : IDatabaseConnection
     {
-        private SQLiteConnection _connection;
+        private readonly SQLiteConnection _connection;
 
         public DatabaseConnection(SQLiteConnection connection)
         {
             _connection = connection.OpenAndReturn();
         }
 
-        public TimeInterval
-            GetTimeIntervals(TimeIntervalType timeIntervalType) //TODO make enum_number in db table UNIQUE
+        public TimeInterval GetTimeIntervals(TimeIntervalType timeIntervalType)
         {
             using var command = _connection.CreateCommand();
             command.Connection = _connection;
@@ -51,13 +48,11 @@ namespace DatabaseConnection.db_connections
 
         public void Save(TimeInterval timeInterval)
         {
-            var tableName = TableName.GetTableName(timeInterval.GetType());
-            var nameColumn = SerializableName.GetSerializableName(timeInterval.GetType(), "Name");
-            var typeColumn = SerializableName.GetSerializableName(timeInterval.GetType(), "Type");
-
             using var command = _connection.CreateCommand();
             command.Connection = _connection;
-            command.CommandText = $"insert into {tableName}({nameColumn}, {typeColumn}) values (:name, :type);";
+            command.CommandText =
+                $"insert into {TimeInterval.GetTableName()}({TimeInterval.GetNameColumnName()}, {TimeInterval.GetTypeColumnName()}) " +
+                "values (:name, :type);";
             command.Parameters.AddWithValue("name", timeInterval.Name);
             command.Parameters.AddWithValue("type", (int) timeInterval.Type);
             command.ExecuteNonQuery();
@@ -65,15 +60,11 @@ namespace DatabaseConnection.db_connections
 
         public void Save(Prediction prediction)
         {
-            var tableName = TableName.GetTableName(prediction.GetType());
-            var zodiacIdColumn = SerializableName.GetSerializableName(prediction.GetType(), "Zodiac");
-            var timeIntervalColumn = SerializableName.GetSerializableName(prediction.GetType(), "TimeInterval");
-            var textColumn = SerializableName.GetSerializableName(prediction.GetType(), "Text");
-
             using var command = _connection.CreateCommand();
             command.Connection = _connection;
             command.CommandText =
-                $"insert into {tableName}({zodiacIdColumn}, {timeIntervalColumn}, {textColumn}) values (:zodiac_id, :interval_id, :text);";
+                $"insert into {Prediction.GetTableName()}({Prediction.GetZodiacColumnName()}, {Prediction.GetTimeIntervalColumnName()}, {Prediction.GetTextColumnName()}) " +
+                "values (:zodiac_id, :interval_id, :text);";
             command.Parameters.AddWithValue("zodiac_id", prediction.Zodiac.Id);
             command.Parameters.AddWithValue("interval_id", prediction.TimeInterval.Id);
             command.Parameters.AddWithValue("text", prediction.Text);
@@ -82,13 +73,11 @@ namespace DatabaseConnection.db_connections
 
         public void Save(Zodiac zodiac)
         {
-            var tableName = TableName.GetTableName(zodiac.GetType());
-            var nameColumn = SerializableName.GetSerializableName(zodiac.GetType(), "Name");
-            var typeColumn = SerializableName.GetSerializableName(zodiac.GetType(), "Type");
-
             using var command = _connection.CreateCommand();
             command.Connection = _connection;
-            command.CommandText = $"insert into {tableName}({nameColumn}, {typeColumn}) values (:name, :type);";
+            command.CommandText =
+                $"insert into {Zodiac.GetTableName()}({Zodiac.GetNameColumnName()}, {Zodiac.GetTypeColumnName()}) " +
+                "values (:name, :type);";
             command.Parameters.AddWithValue("name", zodiac.Name);
             command.Parameters.AddWithValue("type", (int) zodiac.Type);
             command.ExecuteNonQuery();
@@ -110,5 +99,27 @@ namespace DatabaseConnection.db_connections
             command.CommandText = commandText;
             command.ExecuteNonQuery();
         }
+
+        private bool IsTableEmpty(string tableName, string whereParameterName, int whereParameterValue)
+        {
+            using var command = _connection.CreateCommand();
+            command.Connection = _connection;
+            command.CommandText = $"select * from {tableName} where {whereParameterName} = :parameter;";
+            command.Parameters.AddWithValue("parameter", whereParameterValue);
+            return command.ExecuteReader().Read();
+        }
+
+        private bool IsZodiacAlreadySaved(Zodiac zodiac)
+        {
+            return IsTableEmpty(Zodiac.GetTableName(), Zodiac.GetTypeColumnName(), (int) zodiac.Type);
+        }
+
+        private bool IsTimeIntervalAlreadySaved(TimeInterval timeInterval)
+        {
+            return IsTableEmpty(TimeInterval.GetTableName(), TimeInterval.GetTypeColumnName(),
+                (int) timeInterval.Type);
+        }
+
+        //TODO add isSaved for prediction
     }
 }

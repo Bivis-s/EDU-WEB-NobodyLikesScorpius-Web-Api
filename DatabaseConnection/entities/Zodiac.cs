@@ -22,16 +22,30 @@ namespace DatabaseConnection.entities
 
         [SerializableName("id")] public int Id { get; }
 
-        [SerializableName("name")] public string Name { get; set; }
+        [SerializableName("name")] public string Name { get; }
 
-        [SerializableName("enum_number")] public ZodiacType Type { get; set; }
+        [SerializableName("enum_number")] public ZodiacType Type { get; }
+
+        public static string GetTableName()
+        {
+            return TableName.GetTableName(typeof(Zodiac));
+        }
+
+        public static string GetNameColumnName()
+        {
+            return SerializableName.GetSerializableName(typeof(Zodiac), "Name");
+        }
+
+        public static string GetTypeColumnName()
+        {
+            return SerializableName.GetSerializableName(typeof(Zodiac), "Type");
+        }
 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((Zodiac) obj);
+            return obj.GetType() == GetType() && Equals((Zodiac) obj);
         }
 
         public override int GetHashCode()

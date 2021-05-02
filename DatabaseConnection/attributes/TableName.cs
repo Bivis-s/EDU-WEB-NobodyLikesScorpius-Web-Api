@@ -10,15 +10,12 @@ namespace DatabaseConnection.attributes
             Value = value;
         }
 
-        private string Value { get; set; }
-        
+        private string Value { get; }
+
         public static string GetTableName(Type type)
         {
             var attribute = (TableName) GetCustomAttribute(type, typeof(TableName));
-            if (attribute != null)
-            {
-                return attribute.Value;
-            }
+            if (attribute != null) return attribute.Value;
             throw new ArgumentException($"{type.FullName} has no attribute TableName");
         }
     }

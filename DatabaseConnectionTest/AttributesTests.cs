@@ -8,13 +8,13 @@ namespace DatabaseConnectionTest
     [TestFixture]
     public class AttributesTests
     {
-        private Zodiac _zodiac;
-
         [SetUp]
         public void Setup()
         {
             _zodiac = new Zodiac(1, "Aquarius", ZodiacType.Aquarius);
         }
+
+        private Zodiac _zodiac;
 
         [Test]
         public void GetSerializableName()

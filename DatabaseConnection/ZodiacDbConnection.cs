@@ -8,12 +8,6 @@ namespace DatabaseConnection
     {
         private static db_connections.DatabaseConnection _databaseConnection;
 
-        private db_connections.DatabaseConnection GetDatabaseConnection()
-        {
-            return _databaseConnection ??=
-                new db_connections.DatabaseConnection(DatabaseConnectionManager.GetSqlConnection());
-        }
-
         public TimeInterval GetTimeIntervals(TimeIntervalType timeIntervalType)
         {
             return GetDatabaseConnection().GetTimeIntervals(timeIntervalType);
@@ -47,6 +41,12 @@ namespace DatabaseConnection
         public void ClearAll()
         {
             GetDatabaseConnection().ClearAll();
+        }
+
+        private db_connections.DatabaseConnection GetDatabaseConnection()
+        {
+            return _databaseConnection ??=
+                new db_connections.DatabaseConnection(DatabaseConnectionManager.GetSqlConnection());
         }
     }
 }

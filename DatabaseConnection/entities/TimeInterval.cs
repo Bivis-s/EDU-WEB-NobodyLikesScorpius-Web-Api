@@ -22,16 +22,30 @@ namespace DatabaseConnection.entities
 
         [SerializableName("id")] public int Id { get; }
 
-        [SerializableName("name")] public string Name { get; set; }
+        [SerializableName("name")] public string Name { get; }
 
-        [SerializableName("enum_number")] public TimeIntervalType Type { get; set; }
+        [SerializableName("enum_number")] public TimeIntervalType Type { get; }
+
+        public static string GetTableName()
+        {
+            return TableName.GetTableName(typeof(TimeInterval));
+        }
+
+        public static string GetNameColumnName()
+        {
+            return SerializableName.GetSerializableName(typeof(TimeInterval), "Name");
+        }
+
+        public static string GetTypeColumnName()
+        {
+            return SerializableName.GetSerializableName(typeof(TimeInterval), "Type");
+        }
 
         public override bool Equals(object obj)
         {
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
-            if (obj.GetType() != this.GetType()) return false;
-            return Equals((TimeInterval) obj);
+            return obj.GetType() == GetType() && Equals((TimeInterval) obj);
         }
 
         public override int GetHashCode()
