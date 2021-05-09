@@ -9,4 +9,8 @@
       <_ContentIncludedByDefault Remove="wwwroot\zodiac_signs\cancer.html" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\DatabaseConnection\DatabaseConnection.csproj" />
+    </ItemGroup>
+
 </Project>
