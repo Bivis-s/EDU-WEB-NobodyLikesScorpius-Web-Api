@@ -5,17 +5,17 @@ namespace DatabaseConnection.db_connections
 {
     public interface IDatabaseConnection
     {
-        TimeInterval GetTimeIntervals(TimeIntervalType timeIntervalType);
+        TimeInterval GetTimeInterval(TimeIntervalType timeIntervalType);
 
-        Prediction GetPredictions(Zodiac zodiac, TimeInterval timeInterval);
+        Prediction GetPrediction(Zodiac zodiac, TimeInterval timeInterval);
 
         Zodiac GetZodiac(ZodiacType zodiacType);
 
-        void Save(TimeInterval timeInterval);
+        void SaveOrUpdate(TimeInterval timeInterval);
 
-        void Save(Prediction prediction);
+        void SaveOrUpdate(Prediction prediction);
 
-        void Save(Zodiac zodiac);
+        void SaveOrUpdate(Zodiac zodiac);
 
         void ClearAll();
     }

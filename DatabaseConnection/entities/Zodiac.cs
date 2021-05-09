@@ -57,5 +57,10 @@ namespace DatabaseConnection.entities
         {
             return Name == other.Name && Type == other.Type;
         }
+
+        public override string ToString()
+        {
+            return $"{nameof(Id)}: {Id}, {nameof(Name)}: {Name}, {nameof(Type)}: {Type}";
+        }
     }
 }

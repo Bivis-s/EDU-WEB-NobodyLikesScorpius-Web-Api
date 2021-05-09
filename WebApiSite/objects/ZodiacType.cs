@@ -11,7 +11,7 @@
         Libra,
         Scorpius,
         Sagittarius,
-        Capricornus,
+        Capricorn,
         Aquarius,
         Pisces
     }

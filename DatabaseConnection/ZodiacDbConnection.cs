@@ -8,14 +8,14 @@ namespace DatabaseConnection
     {
         private static db_connections.DatabaseConnection _databaseConnection;
 
-        public TimeInterval GetTimeIntervals(TimeIntervalType timeIntervalType)
+        public TimeInterval GetTimeInterval(TimeIntervalType timeIntervalType)
         {
-            return GetDatabaseConnection().GetTimeIntervals(timeIntervalType);
+            return GetDatabaseConnection().GetTimeInterval(timeIntervalType);
         }
 
-        public Prediction GetPredictions(Zodiac zodiac, TimeInterval timeInterval)
+        public Prediction GetPrediction(Zodiac zodiac, TimeInterval timeInterval)
         {
-            return GetDatabaseConnection().GetPredictions(zodiac, timeInterval);
+            return GetDatabaseConnection().GetPrediction(zodiac, timeInterval);
         }
 
         public Zodiac GetZodiac(ZodiacType zodiacType)
@@ -23,19 +23,19 @@ namespace DatabaseConnection
             return GetDatabaseConnection().GetZodiac(zodiacType);
         }
 
-        public void Save(TimeInterval timeInterval)
+        public void SaveOrUpdate(TimeInterval timeInterval)
         {
-            GetDatabaseConnection().Save(timeInterval);
+            GetDatabaseConnection().SaveOrUpdate(timeInterval);
         }
 
-        public void Save(Prediction prediction)
+        public void SaveOrUpdate(Prediction prediction)
         {
-            GetDatabaseConnection().Save(prediction);
+            GetDatabaseConnection().SaveOrUpdate(prediction);
         }
 
-        public void Save(Zodiac zodiac)
+        public void SaveOrUpdate(Zodiac zodiac)
         {
-            GetDatabaseConnection().Save(zodiac);
+            GetDatabaseConnection().SaveOrUpdate(zodiac);
         }
 
         public void ClearAll()

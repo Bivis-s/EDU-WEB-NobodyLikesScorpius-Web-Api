@@ -31,7 +31,7 @@ namespace DatabaseConnection.factories
         public static Prediction CreatePrediction(SQLiteDataReader dataReader, Zodiac zodiac, TimeInterval timeInterval)
         {
             dataReader.Read();
-            var text = dataReader.GetString(0);
+            var text = dataReader.GetString(2);
             return new Prediction(zodiac, timeInterval, text);
         }
     }

@@ -55,5 +55,10 @@ namespace DatabaseConnection.entities
         {
             return Equals(TimeInterval, other.TimeInterval) && Text == other.Text;
         }
+
+        public override string ToString()
+        {
+            return $"{nameof(Zodiac)}: {Zodiac}, {nameof(TimeInterval)}: {TimeInterval}, {nameof(Text)}: {Text}";
+        }
     }
 }
