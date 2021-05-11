@@ -6,15 +6,15 @@ namespace DatabaseConnection.entities
     [TableName("admins")]
     public class Admin
     {
-        [SerializableName("name")] public string Name { get; set; }
-
-        [SerializableName("password")] public string Password { get; set; }
-
         public Admin(string name, string password)
         {
             Name = name;
             Password = password;
         }
+
+        [SerializableName("name")] public string Name { get; }
+
+        [SerializableName("password")] public string Password { get; }
 
         public static string GetTableName()
         {

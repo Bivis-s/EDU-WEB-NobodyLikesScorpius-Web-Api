@@ -15,7 +15,8 @@ namespace TryToWebApi.Controllers
         {
             try
             {
-                return new ZodiacDbConnection().GetPrediction((ZodiacType) zodiacNumber, (TimeIntervalType) timeInterval);
+                return new ZodiacDbConnection().GetPrediction((ZodiacType) zodiacNumber,
+                    (TimeIntervalType) timeInterval);
             }
             catch (InvalidOperationException exception)
             {

@@ -83,7 +83,7 @@ namespace DatabaseConnection.db_connections
             using var command = _connection.CreateCommand();
             command.Connection = _connection;
             command.CommandText =
-                $"select {Zodiac.GetIdColumnName()}, {Zodiac.GetNameColumnName()}, {Zodiac.GetTableName()} " +
+                $"select {Zodiac.GetIdColumnName()}, {Zodiac.GetNameColumnName()}, {Zodiac.GetTypeColumnName()} " +
                 $"from {Zodiac.GetTableName()} " +
                 $"where {Zodiac.GetTypeColumnName()} = :enum_number;";
             command.Parameters.AddWithValue("enum_number", (int) zodiacType);

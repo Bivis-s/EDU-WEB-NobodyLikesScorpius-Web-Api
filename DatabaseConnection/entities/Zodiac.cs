@@ -30,7 +30,7 @@ namespace DatabaseConnection.entities
         {
             return TableName.GetTableName(typeof(Zodiac));
         }
-        
+
         public static string GetIdColumnName()
         {
             return SerializableName.GetSerializableName(typeof(Zodiac), "Id");

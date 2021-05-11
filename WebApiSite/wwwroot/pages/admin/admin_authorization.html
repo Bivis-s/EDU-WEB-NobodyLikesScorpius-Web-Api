@@ -1,0 +1,22 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin authorization</title>
+</head>
+<body>
+<main>
+    <h1>Admin authorization</h1>
+    <form action="/AdminAuthorization">
+        <label for="login">Login:</label><br>
+        <input type="text" id="login" name="login"><br>
+        <label for="password">Password:</label><br>
+        <input type="text" id="password" name="password"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <p id="invalid_auth" style="display: none;">Authorization error, plase try again</p>
+</main>
+</body>
+<script src="../../scripts/get_params_from_url.js"></script>
+<script src="../../scripts/admin_authorization.js"></script>
+</html>
