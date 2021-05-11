@@ -13,9 +13,9 @@ namespace DatabaseConnection
             return GetDatabaseConnection().GetTimeInterval(timeIntervalType);
         }
 
-        public Prediction GetPrediction(Zodiac zodiac, TimeInterval timeInterval)
+        public Prediction GetPrediction(ZodiacType zodiacType, TimeIntervalType timeIntervalType)
         {
-            return GetDatabaseConnection().GetPrediction(zodiac, timeInterval);
+            return GetDatabaseConnection().GetPrediction(zodiacType, timeIntervalType);
         }
 
         public Zodiac GetZodiac(ZodiacType zodiacType)

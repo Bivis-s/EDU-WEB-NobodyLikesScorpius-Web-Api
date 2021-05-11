@@ -9,7 +9,7 @@ let aElements = document.querySelectorAll("td[type-number]");
 for (let element of aElements) {
     let innerA = element.querySelector("a");
     let timeIntervalTypeNumber = element.getAttribute("type-number");
-    innerA.href = "prediction.html?type=" + getParamFromUrl("type") +  "&time=" + timeIntervalTypeNumber;
+    innerA.href = "prediction.html?type=" + getParamFromUrl("type") + "&time=" + timeIntervalTypeNumber;
 }
 
 // set time intervals names into the page
@@ -27,7 +27,7 @@ async function getTimeIntervalNameFromDb(timeIntervalTypeNumber) {
     if (apiResponse.ok) {
         return await apiResponse.json();
     } else {
-        console.log("Cannot get zodiac name from db, status code: " + apiResponse.status);
+        console.log("Cannot get time interval name from db, status code: " + apiResponse.status);
     }
 }
 

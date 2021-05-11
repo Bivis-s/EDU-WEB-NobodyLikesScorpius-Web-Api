@@ -7,7 +7,7 @@ namespace DatabaseConnection.db_connections
     {
         TimeInterval GetTimeInterval(TimeIntervalType timeIntervalType);
 
-        Prediction GetPrediction(Zodiac zodiac, TimeInterval timeInterval);
+        Prediction GetPrediction(ZodiacType zodiacType, TimeIntervalType timeIntervalType);
 
         Zodiac GetZodiac(ZodiacType zodiacType);
 

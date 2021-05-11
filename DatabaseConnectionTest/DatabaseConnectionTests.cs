@@ -47,7 +47,7 @@ namespace DatabaseConnectionTest
             var expectedPrediction = new Prediction(_actualZodiac, _actualTimeIntervals,
                 "Скорпионов 4потянет на подвиги — как производственные, так и личные. Год будет богат на путешествия. Каждое будет по-своему значимо. Лишних событий в год Белого Металлического Быка точно не предвидится. Но при всем при этом необходимо помнить об отдыхе. Своевременное чередование труда и расслабления позволит вам держать себя в тонусе и добиться значительной финансовой отдачи от своей деятельности.");
             _connection.SaveOrUpdate(expectedPrediction);
-            var actualPrediction = _connection.GetPrediction(_actualZodiac, _actualTimeIntervals);
+            var actualPrediction = _connection.GetPrediction(_actualZodiac.Type, _actualTimeIntervals.Type);
             Assert.AreEqual(expectedPrediction, actualPrediction,
                 $"Returned from db Prediction '{actualPrediction}' isn't equal to saved in db Prediction '{expectedPrediction}'");
         }

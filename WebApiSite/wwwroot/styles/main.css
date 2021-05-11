@@ -13,6 +13,11 @@ h1 {
     text-shadow: 0 0 8px darkblue, 0 0 3px black;
 }
 
+h2 {
+    text-align: center;
+    margin: 0;
+}
+
 .parallax-layer {
     background-image: url(../images/main_background_image.jpg);
     position: fixed;

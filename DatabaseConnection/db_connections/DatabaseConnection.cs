@@ -204,8 +204,10 @@ namespace DatabaseConnection.db_connections
             }
         }
 
-        public Prediction GetPrediction(Zodiac zodiac, TimeInterval timeInterval)
+        public Prediction GetPrediction(ZodiacType zodiacType, TimeIntervalType timeIntervalType)
         {
+            var zodiac = GetZodiac(zodiacType);
+            var timeInterval = GetTimeInterval(timeIntervalType);
             return Factory.CreatePrediction(GetPredictionDataReader(zodiac, timeInterval), zodiac, timeInterval);
         }
 
