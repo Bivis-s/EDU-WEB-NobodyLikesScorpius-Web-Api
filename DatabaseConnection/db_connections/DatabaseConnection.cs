@@ -23,6 +23,18 @@ namespace DatabaseConnection.db_connections
                             "delete from zodiacs;");
         }
 
+        public bool IsSuchAdminPresent(Admin admin)
+        {
+            using var command = _connection.CreateCommand();
+            command.Connection = _connection;
+            command.CommandText = $"select * from {Admin.GetTableName()} " +
+                                  $"where {Admin.GetNameColumnName()} = :name " +
+                                  $"and {Admin.GetPasswordColumnName()} = :pass;";
+            command.Parameters.AddWithValue("name", admin.Name);
+            command.Parameters.AddWithValue("pass", admin.Password);
+            return command.ExecuteReader().Read();
+        }
+
         private void ExecuteNonQuery(string commandText)
         {
             using var command = _connection.CreateCommand();
@@ -71,7 +83,8 @@ namespace DatabaseConnection.db_connections
             using var command = _connection.CreateCommand();
             command.Connection = _connection;
             command.CommandText =
-                $"select id, name, enum_number from {Zodiac.GetTableName()} " +
+                $"select {Zodiac.GetIdColumnName()}, {Zodiac.GetNameColumnName()}, {Zodiac.GetTableName()} " +
+                $"from {Zodiac.GetTableName()} " +
                 $"where {Zodiac.GetTypeColumnName()} = :enum_number;";
             command.Parameters.AddWithValue("enum_number", (int) zodiacType);
             return command.ExecuteReader();
@@ -138,9 +151,10 @@ namespace DatabaseConnection.db_connections
         {
             using var command = _connection.CreateCommand();
             command.Connection = _connection;
-            command.CommandText = "select id, name, enum_number " +
-                                  "from time_intervals " +
-                                  "where enum_number = :enum_number;";
+            command.CommandText =
+                $"select {TimeInterval.GetIdColumnName()}, {TimeInterval.GetNameColumnName()}, {TimeInterval.GetTypeColumnName()} " +
+                $"from {TimeInterval.GetTableName()} " +
+                $"where {TimeInterval.GetTypeColumnName()} = :enum_number;";
             command.Parameters.AddWithValue("enum_number", (int) timeIntervalType);
             return Factory.CreateTimeInterval(command.ExecuteReader());
         }
@@ -216,7 +230,7 @@ namespace DatabaseConnection.db_connections
             using var command = _connection.CreateCommand();
             command.Connection = _connection;
             command.CommandText =
-                $"select zodiac_id, time_interval_id, text_value from {Prediction.GetTableName()} " +
+                $"select {Prediction.GetZodiacColumnName()}, {Prediction.GetTimeIntervalColumnName()}, {Prediction.GetTextColumnName()} from {Prediction.GetTableName()} " +
                 $"where {Prediction.GetZodiacColumnName()} = :zodiac_id " +
                 $"and {Prediction.GetTimeIntervalColumnName()} = :interval_id;";
             command.Parameters.AddWithValue("zodiac_id", zodiac.Id);

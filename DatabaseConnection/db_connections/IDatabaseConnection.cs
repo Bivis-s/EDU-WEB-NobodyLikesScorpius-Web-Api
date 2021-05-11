@@ -18,5 +18,7 @@ namespace DatabaseConnection.db_connections
         void SaveOrUpdate(Zodiac zodiac);
 
         void ClearAll();
+
+        bool IsSuchAdminPresent(Admin admin);
     }
 }

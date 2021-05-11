@@ -43,6 +43,11 @@ namespace DatabaseConnection
             GetDatabaseConnection().ClearAll();
         }
 
+        public bool IsSuchAdminPresent(Admin admin)
+        {
+            return GetDatabaseConnection().IsSuchAdminPresent(admin);
+        }
+
         private db_connections.DatabaseConnection GetDatabaseConnection()
         {
             return _databaseConnection ??=

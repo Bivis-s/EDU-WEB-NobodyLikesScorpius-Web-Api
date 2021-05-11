@@ -4,12 +4,8 @@ using TryToWebApi.objects;
 
 namespace DatabaseConnection.factories
 {
-    public class Factory
+    public static class Factory
     {
-        private Factory()
-        {
-        }
-
         public static Zodiac CreateZodiac(SQLiteDataReader dataReader)
         {
             dataReader.Read();

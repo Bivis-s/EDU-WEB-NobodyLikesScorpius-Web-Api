@@ -31,6 +31,11 @@ namespace DatabaseConnection.entities
             return TableName.GetTableName(typeof(TimeInterval));
         }
 
+        public static string GetIdColumnName()
+        {
+            return SerializableName.GetSerializableName(typeof(TimeInterval), "Id");
+        }
+
         public static string GetNameColumnName()
         {
             return SerializableName.GetSerializableName(typeof(TimeInterval), "Name");
