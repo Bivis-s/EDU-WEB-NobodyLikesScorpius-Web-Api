@@ -1,4 +1,5 @@
-﻿using DatabaseConnection.entities;
+﻿using System.Collections.Generic;
+using DatabaseConnection.entities;
 using TryToWebApi.objects;
 
 namespace DatabaseConnection.db_connections
@@ -20,5 +21,9 @@ namespace DatabaseConnection.db_connections
         void ClearAll();
 
         bool IsSuchAdminPresent(Admin admin);
+
+        List<Zodiac> GetZodiacs();
+
+        List<TimeInterval> GetTimeIntervals();
     }
 }

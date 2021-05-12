@@ -1,4 +1,5 @@
-﻿using DatabaseConnection.db_connections;
+﻿using System.Collections.Generic;
+using DatabaseConnection.db_connections;
 using DatabaseConnection.entities;
 using TryToWebApi.objects;
 
@@ -46,6 +47,16 @@ namespace DatabaseConnection
         public bool IsSuchAdminPresent(Admin admin)
         {
             return GetDatabaseConnection().IsSuchAdminPresent(admin);
+        }
+
+        public List<Zodiac> GetZodiacs()
+        {
+            return GetDatabaseConnection().GetZodiacs();
+        }
+
+        public List<TimeInterval> GetTimeIntervals()
+        {
+            return GetDatabaseConnection().GetTimeIntervals();
         }
 
         private db_connections.DatabaseConnection GetDatabaseConnection()

@@ -1,4 +1,6 @@
-﻿using System.Data.SQLite;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.SQLite;
 using DatabaseConnection.entities;
 using DatabaseConnection.factories;
 using TryToWebApi.objects;
@@ -32,6 +34,7 @@ namespace DatabaseConnection.db_connections
                                   $"and {Admin.GetPasswordColumnName()} = :pass;";
             command.Parameters.AddWithValue("name", admin.Name);
             command.Parameters.AddWithValue("pass", admin.Password);
+            Console.WriteLine("Execute SQL: " + command.CommandText);
             return command.ExecuteReader().Read();
         }
 
@@ -40,6 +43,7 @@ namespace DatabaseConnection.db_connections
             using var command = _connection.CreateCommand();
             command.Connection = _connection;
             command.CommandText = commandText;
+            Console.WriteLine("Execute SQL: " + command.CommandText);
             command.ExecuteNonQuery();
         }
 
@@ -49,6 +53,7 @@ namespace DatabaseConnection.db_connections
             command.Connection = _connection;
             command.CommandText = $"select * from {tableName} where {whereParameterName} = :parameter;";
             command.Parameters.AddWithValue("parameter", whereParameterValue);
+            Console.WriteLine("Execute SQL: " + command.CommandText);
             return command.ExecuteReader().Read();
         }
 
@@ -69,6 +74,7 @@ namespace DatabaseConnection.db_connections
                     "values (:name, :type);";
                 command.Parameters.AddWithValue("name", zodiac.Name);
                 command.Parameters.AddWithValue("type", (int) zodiac.Type);
+                Console.WriteLine("Execute SQL: " + command.CommandText);
                 command.ExecuteNonQuery();
             }
         }
@@ -76,6 +82,11 @@ namespace DatabaseConnection.db_connections
         public Zodiac GetZodiac(ZodiacType zodiacType)
         {
             return Factory.CreateZodiac(GetZodiacDataReader(zodiacType));
+        }
+
+        public List<Zodiac> GetZodiacs()
+        {
+            return Factory.CreateZodiacList(GetZodiacsDataReader());
         }
 
         private SQLiteDataReader GetZodiacDataReader(ZodiacType zodiacType)
@@ -87,6 +98,18 @@ namespace DatabaseConnection.db_connections
                 $"from {Zodiac.GetTableName()} " +
                 $"where {Zodiac.GetTypeColumnName()} = :enum_number;";
             command.Parameters.AddWithValue("enum_number", (int) zodiacType);
+            Console.WriteLine("Execute SQL: " + command.CommandText);
+            return command.ExecuteReader();
+        }
+
+        private SQLiteDataReader GetZodiacsDataReader()
+        {
+            using var command = _connection.CreateCommand();
+            command.Connection = _connection;
+            command.CommandText =
+                $"select {Zodiac.GetIdColumnName()}, {Zodiac.GetNameColumnName()}, {Zodiac.GetTypeColumnName()} " +
+                $"from {Zodiac.GetTableName()};";
+            Console.WriteLine("Execute SQL: " + command.CommandText);
             return command.ExecuteReader();
         }
 
@@ -103,6 +126,7 @@ namespace DatabaseConnection.db_connections
                 $"delete from {Zodiac.GetTableName()} " +
                 $"where {Zodiac.GetTypeColumnName()} = :enum_number;";
             command.Parameters.AddWithValue("zodiac_id", (int) zodiac.Type);
+            Console.WriteLine("Execute SQL: " + command.CommandText);
             command.ExecuteNonQuery();
         }
 
@@ -120,7 +144,7 @@ namespace DatabaseConnection.db_connections
             command.Parameters.AddWithValue("new_name", zodiac.Name);
             command.Parameters.AddWithValue("new_enum_number", (int) zodiac.Type);
             command.Parameters.AddWithValue("id", id);
-
+            Console.WriteLine("Execute SQL: " + command.CommandText);
             command.ExecuteNonQuery();
         }
 
@@ -143,6 +167,7 @@ namespace DatabaseConnection.db_connections
                     "values (:name, :type);";
                 command.Parameters.AddWithValue("name", timeInterval.Name);
                 command.Parameters.AddWithValue("type", (int) timeInterval.Type);
+                Console.WriteLine("Execute SQL: " + command.CommandText);
                 command.ExecuteNonQuery();
             }
         }
@@ -156,7 +181,19 @@ namespace DatabaseConnection.db_connections
                 $"from {TimeInterval.GetTableName()} " +
                 $"where {TimeInterval.GetTypeColumnName()} = :enum_number;";
             command.Parameters.AddWithValue("enum_number", (int) timeIntervalType);
+            Console.WriteLine("Execute SQL: " + command.CommandText);
             return Factory.CreateTimeInterval(command.ExecuteReader());
+        }
+
+        public List<TimeInterval> GetTimeIntervals()
+        {
+            using var command = _connection.CreateCommand();
+            command.Connection = _connection;
+            command.CommandText =
+                $"select {TimeInterval.GetIdColumnName()}, {TimeInterval.GetNameColumnName()}, {TimeInterval.GetTypeColumnName()} " +
+                $"from {TimeInterval.GetTableName()};";
+            Console.WriteLine("Execute SQL: " + command.CommandText);
+            return Factory.CreateTimeIntervalList(command.ExecuteReader());
         }
 
         private bool IsTimeIntervalAlreadySaved(TimeInterval timeInterval)
@@ -173,6 +210,7 @@ namespace DatabaseConnection.db_connections
                 $"delete from {TimeInterval.GetTableName()} " +
                 $"where {TimeInterval.GetTypeColumnName()} = :enum_number;";
             command.Parameters.AddWithValue("zodiac_id", (int) timeInterval.Type);
+            Console.WriteLine("Execute SQL: " + command.CommandText);
             command.ExecuteNonQuery();
         }
 
@@ -190,7 +228,7 @@ namespace DatabaseConnection.db_connections
             command.Parameters.AddWithValue("new_name", timeInterval.Name);
             command.Parameters.AddWithValue("new_enum_number", (int) timeInterval.Type);
             command.Parameters.AddWithValue("id", id);
-
+            Console.WriteLine("Execute SQL: " + command.CommandText);
             command.ExecuteNonQuery();
         }
 
@@ -214,6 +252,7 @@ namespace DatabaseConnection.db_connections
                 command.Parameters.AddWithValue("zodiac_id", prediction.Zodiac.Id);
                 command.Parameters.AddWithValue("interval_id", prediction.TimeInterval.Id);
                 command.Parameters.AddWithValue("text", prediction.Text);
+                Console.WriteLine("Execute SQL: " + command.CommandText);
                 command.ExecuteNonQuery();
             }
         }
@@ -235,6 +274,7 @@ namespace DatabaseConnection.db_connections
                 $"and {Prediction.GetTimeIntervalColumnName()} = :interval_id;";
             command.Parameters.AddWithValue("zodiac_id", zodiac.Id);
             command.Parameters.AddWithValue("interval_id", timeInterval.Id);
+            Console.WriteLine("Execute SQL: " + command.CommandText);
             return command.ExecuteReader();
         }
 
@@ -253,6 +293,7 @@ namespace DatabaseConnection.db_connections
                 $"and {Prediction.GetTimeIntervalColumnName()} = :interval_id;";
             command.Parameters.AddWithValue("zodiac_id", prediction.Zodiac.Id);
             command.Parameters.AddWithValue("interval_id", prediction.TimeInterval.Id);
+            Console.WriteLine("Execute SQL: " + command.CommandText);
             command.ExecuteNonQuery();
         }
 
@@ -268,7 +309,7 @@ namespace DatabaseConnection.db_connections
             command.Parameters.AddWithValue("new_text", prediction.Text);
             command.Parameters.AddWithValue("zodiac_id", prediction.Zodiac.Id);
             command.Parameters.AddWithValue("time_interval_id", prediction.TimeInterval.Id);
-
+            Console.WriteLine("Execute SQL: " + command.CommandText);
             command.ExecuteNonQuery();
         }
 

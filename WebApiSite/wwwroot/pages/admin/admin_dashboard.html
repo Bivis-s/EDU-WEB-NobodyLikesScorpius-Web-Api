@@ -4,11 +4,29 @@
     <meta charset="UTF-8">
     <title>Admin dashboard</title>
     <script src="../../scripts/get_params_from_url.js"></script>
-    <script src="../../scripts/admin_dashboard.js"></script>
+    <script src="../../scripts/get_zodiacs.js"></script>
+    <script src="../../scripts/get_time_intervals.js"></script>
+    <script src="../../scripts/get_prediction.js"></script>
 </head>
 <body>
 <main>
-    
+    <div id="prediction_section">
+        <form method="post">
+            <label>
+                <textarea cols="64" rows="16" name="textArea">Prediction text</textarea>
+            </label>
+            <br>
+            <label>
+                <select id="zodiac" name="selectZodiac" onchange="updateTextarea()"></select>
+            </label>
+            <label>
+                <select id="timeInterval" name="selectTimeInterval" onchange="updateTextarea()"></select>
+            </label>
+            <br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 </main>
 </body>
+<script src="../../scripts/admin_dashboard.js"></script>
 </html>

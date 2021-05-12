@@ -6,7 +6,7 @@ namespace TryToWebApi.Controllers
     public class IsAdminAuthorizedController : Controller
     {
         [Route("[controller]")]
-        [HttpGet("details")]
+        [HttpGet]
         public bool Get(string sessionToken)
         {
             return Hook.IsAdminSessionRegistered(sessionToken);
