@@ -11,20 +11,18 @@
 <body>
 <main>
     <div id="prediction_section">
-        <form method="post">
-            <label>
-                <textarea cols="64" rows="16" name="textArea">Prediction text</textarea>
-            </label>
-            <br>
-            <label>
-                <select id="zodiac" name="selectZodiac" onchange="updateTextarea()"></select>
-            </label>
-            <label>
-                <select id="timeInterval" name="selectTimeInterval" onchange="updateTextarea()"></select>
-            </label>
-            <br>
-            <input type="submit" value="Submit">
-        </form>
+        <label>
+            <textarea cols="64" rows="16" name="Text">Prediction text</textarea>
+        </label>
+        <br>
+        <label>
+            <select id="zodiac" name="Zodiac" onchange="updateTextarea()"></select>
+        </label>
+        <label>
+            <select id="timeInterval" name="TimeInterval" onchange="updateTextarea()"></select>
+        </label>
+        <br>
+        <button onclick="updatePredictionInDb()">Submit</button>
     </div>
 </main>
 </body>
