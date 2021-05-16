@@ -1,0 +1,35 @@
+h1 {
+    padding-bottom: 48px;
+}
+
+table {
+    top: 10%;
+    border-spacing: 16px;
+    width: 80%;
+    margin: auto;
+    text-shadow: 0 0 8px black, 0 0 11px black;
+}
+
+td {
+    background: rgba(0, 0, 0, 0.5);
+    /*background: rgba(5421, 0, 0, 0.5);*/
+    margin: 0 auto;
+    padding: 8px 4px 8px 8px;
+    font-size: 22px;
+    text-align: center;
+}
+
+td * {
+    margin: 0;
+    padding: 0;
+}
+
+td:first-child p b {
+    font-size: 28px;
+}
+
+td:last-child {
+    width: 50%;
+    text-align: start;
+    vertical-align: top;
+}
