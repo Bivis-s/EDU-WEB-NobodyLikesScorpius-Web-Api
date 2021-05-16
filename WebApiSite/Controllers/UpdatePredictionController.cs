@@ -10,9 +10,9 @@ namespace TryToWebApi.Controllers
     {
         [Route("[controller]")]
         [HttpPost]
-        public bool Post(UpdatePredictionRequest prediction)
+        public bool Post([FromBody] UpdatePredictionRequest prediction)
         {
-            Console.WriteLine("Update Prediction" + prediction);
+            Console.WriteLine("Update Prediction " + prediction);
             if (Hook.IsAdminSessionRegistered(prediction.SessionToken))
             {
                 var dbConnection = new ZodiacDbConnection();
@@ -23,7 +23,7 @@ namespace TryToWebApi.Controllers
                 dbConnection.SaveOrUpdate(predictionToSave);
                 return true;
             }
-
+            
             Console.WriteLine($"Illegal access, {prediction.SessionToken} isn't registered!");
             return false;
         }

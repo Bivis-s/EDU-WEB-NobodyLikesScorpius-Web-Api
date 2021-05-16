@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin dashboard</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="../../scripts/get_params_from_url.js"></script>
     <script src="../../scripts/get_zodiacs.js"></script>
     <script src="../../scripts/get_time_intervals.js"></script>
@@ -12,18 +13,21 @@
 <main>
     <div id="prediction_section">
         <label>
-            <textarea cols="64" rows="16" name="Text">Prediction text</textarea>
+            <textarea cols="64" rows="16" name="Text" placeholder="Prediction text"></textarea>
         </label>
         <br>
         <label>
-            <select id="zodiac" name="Zodiac" onchange="updateTextarea()"></select>
+            <select id="zodiac" name="Zodiac" onchange="updatePredictionText()"></select>
         </label>
         <label>
-            <select id="timeInterval" name="TimeInterval" onchange="updateTextarea()"></select>
+            <select id="timeInterval" name="TimeInterval" onchange="updatePredictionText()"></select>
         </label>
         <br>
         <button onclick="updatePredictionInDb()">Submit</button>
     </div>
+    <a href="#" id="goToHoroscopeButton"><div>Go to horoscope</div></a>
+    <p id="successMessage"></p>
+    <div id="prediction_text"></div>
 </main>
 </body>
 <script src="../../scripts/admin_dashboard.js"></script>

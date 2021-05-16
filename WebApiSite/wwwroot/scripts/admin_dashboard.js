@@ -1,7 +1,8 @@
-﻿//update textarea when page opened
+﻿//update textwhen page opened
 getPredictionFromDb(0, 0).then((prediction) => {
-    let predictionTextarea = document.querySelector("*[name=Text]");
+    let predictionTextarea = document.querySelector("#prediction_text");
     predictionTextarea.innerHTML = prediction.text;
+    updateGoToHoroscopeButton(0, 0)
 });
 
 getIsAdminAuthorized(getParamFromUrl("sessionToken")).then((data) => {
@@ -24,12 +25,13 @@ getTimeIntervals().then((data) => {
     });
 });
 
-function updateTextarea() {
-    let zodiacNumber = document.querySelector("#zodiac").value;
-    let timeIntervalNumber = document.querySelector("#timeInterval").value;
+function updatePredictionText() {
+    let zodiacNumber = $("#zodiac option:selected").val();
+    let timeIntervalNumber = $("#timeInterval option:selected").val();
     getPredictionFromDb(zodiacNumber, timeIntervalNumber).then((prediction) => {
-        let predictionTextarea = document.querySelector("*[name=Text]");
+        let predictionTextarea = document.querySelector("#prediction_text");
         predictionTextarea.innerHTML = prediction.text;
+        updateGoToHoroscopeButton(zodiacNumber, timeIntervalNumber)
     });
 }
 
@@ -43,36 +45,49 @@ async function getIsAdminAuthorized(sessionToken) {
 }
 
 async function updatePredictionInDb() {
-    let zodiacId = document.querySelector("#zodiac").value;
-    let timeIntervalId = document.querySelector("#timeInterval").value;
+    let zodiac = document.querySelector("#zodiac").value;
+    let timeInterval = document.querySelector("#timeInterval").value;
     let textValue = document.querySelector("*[name=Text]").value;
     let sessionToken = getParamFromUrl("sessionToken");
-    
-    let body =  new FormData();
-    body.append('Zodiac', zodiacId + "");
-    body.append('TimeInterval', timeIntervalId + "");
-    body.append('Text', textValue);
-    body.append('SessionToken', sessionToken);
-    
-    console.log(zodiacId + " " + timeIntervalId + " " + textValue + " " + sessionToken + "\nBody: " + body);
 
-    let response = await fetch("http://127.0.0.1:3505/UpdatePrediction",
+    let selectedZodiacOption = $("#zodiac option:selected");
+    let selectedTimeIntervalOption = $("#timeInterval option:selected");
+
+    let body = JSON.stringify({
+        Zodiac: zodiac,
+        TimeInterval: timeInterval,
+        Text: textValue,
+        SessionToken: sessionToken
+    });
+
+    console.log(zodiac + " " + timeInterval + " " + textValue + " " + sessionToken + "\nBody: " + body);
+
+     await fetch("http://127.0.0.1:3505/UpdatePrediction",
         {
             method: 'POST',
             headers: {
-                'Accept': 'multipart/form-data',
-                'Content-Type': 'multipart/form-data'
+                'Content-Type': 'application/json'
             },
             body: body
         }
-    );
-
-    if (response.ok) {
-        if (await response.json()[0] === true) {
-            window.location.href = "admin_dashboard.html?sessionToken=" + sessionToken + "&success=true";
-            return;
+    ).then((response) => {
+        if (response.ok) {
+            showSuccessMessage(selectedZodiacOption.text(), selectedTimeIntervalOption.text());
+        } else {
+            console.log("Cannot get is admin authorized from db, status code: " + response.status);
+            window.location.href = "admin_dashboard.html?sessionToken=" + sessionToken + "&success=false";
         }
-        console.log("Cannot get is admin authorized from db, status code: " + response.status);
-        window.location.href = "admin_dashboard.html?sessionToken=" + sessionToken + "&success=false";
-    }
+    });
+    updatePredictionText();
+}
+
+function showSuccessMessage(zodiacName, timeIntervalName) {
+    let predictionTextarea = document.querySelector("#successMessage");
+    predictionTextarea.style.display = "block";
+    predictionTextarea.innerHTML = "Prediction successfully updated for <br>Zodiac: <strong>" + zodiacName +
+        "</strong> and Time Interval: <strong>" + timeIntervalName + "</strong>";
+}
+
+function updateGoToHoroscopeButton(zodiacNumber, timeIntervalNumber) {
+    $("#goToHoroscopeButton").attr("href", "http://127.0.0.1:3505/pages/prediction.html?type=" + zodiacNumber + "&time=" + timeIntervalNumber);
 }
