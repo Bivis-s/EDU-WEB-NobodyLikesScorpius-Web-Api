@@ -9,7 +9,8 @@
 
         public override string ToString()
         {
-            return $"{nameof(Zodiac)}: {Zodiac}, {nameof(TimeInterval)}: {TimeInterval}, {nameof(Text)}: {Text}, {nameof(SessionToken)}: {SessionToken}";
+            return
+                $"{nameof(Zodiac)}: {Zodiac}, {nameof(TimeInterval)}: {TimeInterval}, {nameof(Text)}: {Text}, {nameof(SessionToken)}: {SessionToken}";
         }
     }
 }

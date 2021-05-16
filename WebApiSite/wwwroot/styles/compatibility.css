@@ -1,0 +1,32 @@
+h1 {
+    padding-bottom: 48px;
+}
+
+#compatibility_main_row {
+    text-align: center;
+}
+
+#compatibility_value {
+    font-size: 48px;
+    margin: 0 36px;
+    padding: 0 12px;
+    text-shadow: 0 0 2px green, 0 0 10px black;
+}
+
+select {
+    width: 200px;
+    height: 50px;
+    font-size: 36px;
+}
+
+#main_field {
+    min-width: 640px;
+    width: 50%;
+    background: rgba(0, 0, 0, 0.5);
+    margin: 48px auto 0 auto;
+    padding: 12px 12px 12px 18px;
+    font-size: 24px;
+    font-family: Cormorant Garamond, serif;
+    text-indent: 2em;
+    text-shadow: 0 0 8px black, 0 0 11px black;
+}

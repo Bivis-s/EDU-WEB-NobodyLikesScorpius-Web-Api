@@ -23,7 +23,7 @@ namespace TryToWebApi.Controllers
                 dbConnection.SaveOrUpdate(predictionToSave);
                 return true;
             }
-            
+
             Console.WriteLine($"Illegal access, {prediction.SessionToken} isn't registered!");
             return false;
         }
