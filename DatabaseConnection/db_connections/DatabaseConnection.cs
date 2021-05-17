@@ -59,6 +59,19 @@ namespace DatabaseConnection.db_connections
 
         #region Zodiacs
 
+        public Zodiac GetZodiac(int id)
+        {
+            using var command = _connection.CreateCommand();
+            command.Connection = _connection;
+            command.CommandText =
+                $"select {Zodiac.GetIdColumnName()}, {Zodiac.GetNameColumnName()}, {Zodiac.GetTypeColumnName()} " +
+                $"from {Zodiac.GetTableName()} " +
+                $"where {Zodiac.GetIdColumnName()} = :id;";
+            command.Parameters.AddWithValue("id", id);
+            Console.WriteLine("Execute SQL: " + command.CommandText);
+            return Factory.CreateZodiac(command.ExecuteReader());
+        }
+
         public void SaveOrUpdate(Zodiac zodiac)
         {
             if (IsZodiacAlreadySaved(zodiac))
@@ -309,6 +322,45 @@ namespace DatabaseConnection.db_connections
             command.Parameters.AddWithValue("new_text", prediction.Text);
             command.Parameters.AddWithValue("zodiac_id", prediction.Zodiac.Id);
             command.Parameters.AddWithValue("time_interval_id", prediction.TimeInterval.Id);
+            Console.WriteLine("Execute SQL: " + command.CommandText);
+            command.ExecuteNonQuery();
+        }
+
+        #endregion
+
+        #region Haircut
+
+        public List<Haircut> GetHaircuts()
+        {
+            using var command = _connection.CreateCommand();
+            command.Connection = _connection;
+            command.CommandText =
+                $"select {Haircut.GetIdColumnName()}, {Haircut.GetZodiacIdColumnName()}, {Haircut.GetMoonDayColumnName()}, " +
+                $"{Haircut.GetMoonPhaseColumnName()}, {Haircut.GetPredictionColumnName()}, {Haircut.GetIsPositiveColumnName()} " +
+                $"from {Haircut.GetTableName()};";
+            Console.WriteLine("Execute SQL: " + command.CommandText);
+            return Factory.CreateHaircutList(command.ExecuteReader(), this);
+        }
+
+        public void SaveOrUpdate(Haircut haircut) //TODO почему-то сбрасывает zodiac_id, остальное не трогает
+        {
+            using var command = _connection.CreateCommand();
+            command.Connection = _connection;
+            command.CommandText =
+                $"update {Haircut.GetTableName()} " +
+                $"set {Haircut.GetZodiacIdColumnName()} = :zodiacId and " +
+                $"{Haircut.GetMoonDayColumnName()} = :moonDay and " +
+                $"{Haircut.GetMoonPhaseColumnName()} = :moonPhase and " +
+                $"{Haircut.GetPredictionColumnName()} = :prediction and " +
+                $"{Haircut.GetIsPositiveColumnName()} = :isPositive " +
+                $"where {Haircut.GetIdColumnName()} = :id;";
+            command.Parameters.AddWithValue("zodiacId", haircut.Zodiac.Id);
+            command.Parameters.AddWithValue("moonDay", haircut.MoonDay);
+            command.Parameters.AddWithValue("moonPhase", haircut.MoonPhase);
+            command.Parameters.AddWithValue("prediction", haircut.Prediction);
+            command.Parameters.AddWithValue("isPositive", haircut.IsPositive);
+            command.Parameters.AddWithValue("id", haircut.Id);
+            command.Prepare();
             Console.WriteLine("Execute SQL: " + command.CommandText);
             command.ExecuteNonQuery();
         }

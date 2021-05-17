@@ -51,5 +51,24 @@ namespace DatabaseConnection.factories
             var text = dataReader.GetString(2);
             return new Prediction(zodiac, timeInterval, text);
         }
+
+        public static List<Haircut> CreateHaircutList(SQLiteDataReader dataReader,
+            db_connections.DatabaseConnection databaseConnection)
+        {
+            var timeIntervals = new List<Haircut>();
+            while (dataReader.Read())
+            {
+                var id = dataReader.GetInt32(0);
+                var zodiacId = dataReader.GetInt32(1);
+                var moonDay = dataReader.GetString(2);
+                var moonPhase = dataReader.GetString(3);
+                var prediction = dataReader.GetString(4);
+                var isPositive = dataReader.GetBoolean(5);
+                timeIntervals.Add(new Haircut(id, databaseConnection.GetZodiac(zodiacId), moonDay, moonPhase,
+                    prediction, isPositive));
+            }
+
+            return timeIntervals;
+        }
     }
 }

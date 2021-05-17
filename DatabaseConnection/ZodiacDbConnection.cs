@@ -24,6 +24,11 @@ namespace DatabaseConnection
             return GetDatabaseConnection().GetZodiac(zodiacType);
         }
 
+        public Zodiac GetZodiac(int id)
+        {
+            return GetDatabaseConnection().GetZodiac(id);
+        }
+
         public void SaveOrUpdate(TimeInterval timeInterval)
         {
             GetDatabaseConnection().SaveOrUpdate(timeInterval);
@@ -37,6 +42,11 @@ namespace DatabaseConnection
         public void SaveOrUpdate(Zodiac zodiac)
         {
             GetDatabaseConnection().SaveOrUpdate(zodiac);
+        }
+
+        public void SaveOrUpdate(Haircut haircut)
+        {
+            GetDatabaseConnection().SaveOrUpdate(haircut);
         }
 
         public void ClearAll()
@@ -57,6 +67,11 @@ namespace DatabaseConnection
         public List<TimeInterval> GetTimeIntervals()
         {
             return GetDatabaseConnection().GetTimeIntervals();
+        }
+
+        public List<Haircut> GetHaircuts()
+        {
+            return GetDatabaseConnection().GetHaircuts();
         }
 
         private db_connections.DatabaseConnection GetDatabaseConnection()

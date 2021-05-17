@@ -11,12 +11,16 @@ namespace DatabaseConnection.db_connections
         Prediction GetPrediction(ZodiacType zodiacType, TimeIntervalType timeIntervalType);
 
         Zodiac GetZodiac(ZodiacType zodiacType);
+        
+        Zodiac GetZodiac(int id);
 
         void SaveOrUpdate(TimeInterval timeInterval);
 
         void SaveOrUpdate(Prediction prediction);
 
         void SaveOrUpdate(Zodiac zodiac);
+
+        void SaveOrUpdate(Haircut haircut);
 
         void ClearAll();
 
@@ -25,5 +29,7 @@ namespace DatabaseConnection.db_connections
         List<Zodiac> GetZodiacs();
 
         List<TimeInterval> GetTimeIntervals();
+
+        List<Haircut> GetHaircuts();
     }
 }
