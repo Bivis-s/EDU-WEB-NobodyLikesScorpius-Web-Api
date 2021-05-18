@@ -19,7 +19,7 @@ getPredictionFromDb(getParamFromUrl("type"), getParamFromUrl("time")).then((data
 // set date into the page
 let monthName = new Date().toLocaleString('en', { month: 'long' });
 let dayOfWeekName = new Date().toLocaleString('en', { weekday: 'long' });
-let day = new Date().toLocaleString('en', {day: 'numeric'})
+let day = new Date().toLocaleString('en', {day: 'numeric'});
 let dateOnPage = document.querySelector("#date p");
 dateOnPage.innerHTML = monthName + ' ' + day + '<br>' + dayOfWeekName;
 
