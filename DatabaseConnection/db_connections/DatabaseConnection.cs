@@ -342,25 +342,25 @@ namespace DatabaseConnection.db_connections
             return Factory.CreateHaircutList(command.ExecuteReader(), this);
         }
 
-        public void SaveOrUpdate(Haircut haircut) //TODO почему-то сбрасывает zodiac_id, остальное не трогает
+        public void SaveOrUpdate(Haircut haircut)
         {
             using var command = _connection.CreateCommand();
             command.Connection = _connection;
             command.CommandText =
                 $"update {Haircut.GetTableName()} " +
-                $"set {Haircut.GetZodiacIdColumnName()} = :zodiacId and " +
-                $"{Haircut.GetMoonDayColumnName()} = :moonDay and " +
-                $"{Haircut.GetMoonPhaseColumnName()} = :moonPhase and " +
-                $"{Haircut.GetPredictionColumnName()} = :prediction and " +
+                $"set {Haircut.GetZodiacIdColumnName()} = :zodiacId, " +
+                $"{Haircut.GetMoonDayColumnName()} = :moonDay, " +
+                $"{Haircut.GetMoonPhaseColumnName()} = :moonPhase, " +
+                $"{Haircut.GetPredictionColumnName()} = :prediction, " +
                 $"{Haircut.GetIsPositiveColumnName()} = :isPositive " +
                 $"where {Haircut.GetIdColumnName()} = :id;";
-            command.Parameters.AddWithValue("zodiacId", haircut.Zodiac.Id);
+            command.Parameters.AddWithValue("zodiacId", (int) haircut.Zodiac.Type);
             command.Parameters.AddWithValue("moonDay", haircut.MoonDay);
             command.Parameters.AddWithValue("moonPhase", haircut.MoonPhase);
             command.Parameters.AddWithValue("prediction", haircut.Prediction);
             command.Parameters.AddWithValue("isPositive", haircut.IsPositive);
             command.Parameters.AddWithValue("id", haircut.Id);
-            command.Prepare();
+            // command.Prepare();
             Console.WriteLine("Execute SQL: " + command.CommandText);
             command.ExecuteNonQuery();
         }

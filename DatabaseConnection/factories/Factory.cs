@@ -59,12 +59,13 @@ namespace DatabaseConnection.factories
             while (dataReader.Read())
             {
                 var id = dataReader.GetInt32(0);
-                var zodiacId = dataReader.GetInt32(1);
+                var zodiacType = dataReader.GetInt32(1);
                 var moonDay = dataReader.GetString(2);
                 var moonPhase = dataReader.GetString(3);
                 var prediction = dataReader.GetString(4);
                 var isPositive = dataReader.GetBoolean(5);
-                timeIntervals.Add(new Haircut(id, databaseConnection.GetZodiac(zodiacId), moonDay, moonPhase,
+                timeIntervals.Add(new Haircut(id, databaseConnection.GetZodiac((ZodiacType) zodiacType), moonDay,
+                    moonPhase,
                     prediction, isPositive));
             }
 

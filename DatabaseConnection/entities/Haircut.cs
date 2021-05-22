@@ -27,7 +27,7 @@ namespace DatabaseConnection.entities
 
         [SerializableName("id")] public int Id { get; }
 
-        [SerializableName("zodiac_Id")] public Zodiac Zodiac { get; set; }
+        [SerializableName("zodiac_type")] public Zodiac Zodiac { get; set; }
 
         [SerializableName("moon_day")] public string MoonDay { get; set; }
 
@@ -36,45 +36,6 @@ namespace DatabaseConnection.entities
         [SerializableName("prediction")] public string Prediction { get; set; }
 
         [SerializableName("is_positive")] public bool IsPositive { get; set; }
-
-        #region GetSerializableName
-
-        public static string GetTableName()
-        {
-            return TableName.GetTableName(typeof(Haircut));
-        }
-
-        public static string GetIdColumnName()
-        {
-            return SerializableName.GetSerializableName(typeof(Haircut), "Id");
-        }
-        
-        public static string GetZodiacIdColumnName()
-        {
-            return SerializableName.GetSerializableName(typeof(Haircut), "Zodiac");
-        }
-        
-        public static string GetMoonDayColumnName()
-        {
-            return SerializableName.GetSerializableName(typeof(Haircut), "MoonDay");
-        }
-        
-        public static string GetMoonPhaseColumnName()
-        {
-            return SerializableName.GetSerializableName(typeof(Haircut), "MoonPhase");
-        }
-        
-        public static string GetPredictionColumnName()
-        {
-            return SerializableName.GetSerializableName(typeof(Haircut), "Prediction");
-        }
-        
-        public static string GetIsPositiveColumnName()
-        {
-            return SerializableName.GetSerializableName(typeof(Haircut), "IsPositive");
-        }
-
-        #endregion
 
         public override bool Equals(object obj)
         {
@@ -88,7 +49,7 @@ namespace DatabaseConnection.entities
         {
             return HashCode.Combine(Zodiac, MoonDay, MoonPhase, Prediction, IsPositive);
         }
-        
+
         public override string ToString()
         {
             return
@@ -100,5 +61,44 @@ namespace DatabaseConnection.entities
             return Equals(Zodiac, other.Zodiac) && MoonDay == other.MoonDay && MoonPhase == other.MoonPhase &&
                    Prediction == other.Prediction && IsPositive == other.IsPositive;
         }
+
+        #region GetSerializableName
+
+        public static string GetTableName()
+        {
+            return TableName.GetTableName(typeof(Haircut));
+        }
+
+        public static string GetIdColumnName()
+        {
+            return SerializableName.GetSerializableName(typeof(Haircut), "Id");
+        }
+
+        public static string GetZodiacIdColumnName()
+        {
+            return SerializableName.GetSerializableName(typeof(Haircut), "Zodiac");
+        }
+
+        public static string GetMoonDayColumnName()
+        {
+            return SerializableName.GetSerializableName(typeof(Haircut), "MoonDay");
+        }
+
+        public static string GetMoonPhaseColumnName()
+        {
+            return SerializableName.GetSerializableName(typeof(Haircut), "MoonPhase");
+        }
+
+        public static string GetPredictionColumnName()
+        {
+            return SerializableName.GetSerializableName(typeof(Haircut), "Prediction");
+        }
+
+        public static string GetIsPositiveColumnName()
+        {
+            return SerializableName.GetSerializableName(typeof(Haircut), "IsPositive");
+        }
+
+        #endregion
     }
 }

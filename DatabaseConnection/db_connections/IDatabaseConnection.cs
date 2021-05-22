@@ -11,7 +11,7 @@ namespace DatabaseConnection.db_connections
         Prediction GetPrediction(ZodiacType zodiacType, TimeIntervalType timeIntervalType);
 
         Zodiac GetZodiac(ZodiacType zodiacType);
-        
+
         Zodiac GetZodiac(int id);
 
         void SaveOrUpdate(TimeInterval timeInterval);
