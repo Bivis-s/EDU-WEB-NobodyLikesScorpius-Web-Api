@@ -10,11 +10,13 @@ namespace TryToWebApi.Controllers
     {
         [Route("[controller]")]
         [HttpPost]
-        public bool Post([FromBody] UpdateHaircutRequest request)
+        public bool Post([FromForm] UpdateHaircutRequest request)
         {
             Console.WriteLine("Update Haircut " + request);
             if (Hook.IsAdminSessionRegistered(request.SessionToken))
             {
+                var isPositive = request.IsPositive != null;
+
                 var dbConnection = new ZodiacDbConnection();
                 dbConnection.SaveOrUpdate(new Haircut(
                     request.Id,
@@ -22,7 +24,8 @@ namespace TryToWebApi.Controllers
                     request.MoonDay,
                     request.MoonPhase,
                     request.Prediction,
-                    request.IsPositive));
+                    isPositive
+                ));
                 return true;
             }
 

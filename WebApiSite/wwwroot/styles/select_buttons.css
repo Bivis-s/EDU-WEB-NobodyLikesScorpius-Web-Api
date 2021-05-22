@@ -5,7 +5,7 @@
 
 #main_button_container {
     text-shadow: 0 0 8px black, 0 0 11px black;
-    margin: calc(150px + -1 * 5%) auto auto;
+    margin: calc(100px + -1 * 5%) auto auto;
     width: 300px;
     text-align: center;
     font-size: calc(2vmax + 20% + 12px);

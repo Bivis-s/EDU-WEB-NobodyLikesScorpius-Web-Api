@@ -1,3 +1,5 @@
+let timeParam = getParamFromUrl("time");
+
 // set zodiac name into page head
 let pageTitle = document.querySelector("h1[id=zodiacTitle]");
 getZodiacNameFromDb(getParamFromUrl("type")).then((data) => {
@@ -6,7 +8,7 @@ getZodiacNameFromDb(getParamFromUrl("type")).then((data) => {
 
 // set time intervals name into page head
 let timeIntervalTitle = document.querySelector("h2[id=timeIntervalTitle]");
-getTimeIntervalNameFromDb(getParamFromUrl("time")).then((data) => {
+getTimeIntervalNameFromDb(timeParam).then((data) => {
     timeIntervalTitle.innerHTML = data.name;
 })
 
@@ -17,11 +19,22 @@ getPredictionFromDb(getParamFromUrl("type"), getParamFromUrl("time")).then((data
 })
 
 // set date into the page
-let monthName = new Date().toLocaleString('en', { month: 'long' });
-let dayOfWeekName = new Date().toLocaleString('en', { weekday: 'long' });
-let day = new Date().toLocaleString('en', {day: 'numeric'});
 let dateOnPage = document.querySelector("#date p");
-dateOnPage.innerHTML = monthName + ' ' + day + '<br>' + dayOfWeekName;
+if (timeParam === "0") {
+    let dateForSet = new Date();
+    dateOnPage.innerHTML = getMonthNameByDate(dateForSet) + ' ' + dateForSet.getDate() + '<br>' + getDayOFWeekNameByDate(dateForSet);
+} else if (timeParam === "1") {
+    let dateForSet = new Date();
+    dateForSet.setDate(dateForSet.getDate() + 1);
+    dateOnPage.innerHTML = getMonthNameByDate(dateForSet) + ' ' + dateForSet.getDate() + '<br>' + getDayOFWeekNameByDate(dateForSet);
+} else if (timeParam === "2") {
+    let dateForSet1 = new Date();
+    let dateForSet2 = new Date();
+    dateForSet2.setDate(dateForSet2.getDate() + 7);
+    dateOnPage.innerHTML = getMonthNameByDate(dateForSet1) + '<br>' + dateForSet1.getDate() + ' – ' + dateForSet2.getDate();
+} else if (timeParam === "3") {
+    dateOnPage.innerHTML = getMonthNameByDate(new Date());
+}
 
 async function getTimeIntervalNameFromDb(timeIntervalTypeNumber) {
     let apiResponse = await fetch("http://127.0.0.1:3505/TimeInterval/details?timeIntervalNumber=" + timeIntervalTypeNumber);
@@ -39,4 +52,12 @@ async function getZodiacNameFromDb(zodiacTypeNumber) {
     } else {
         console.log("Cannot get zodiac name from db, status code: " + apiResponse.status);
     }
+}
+
+function getMonthNameByDate(date) {
+    return date.toLocaleString('en', {month: 'long'});
+}
+
+function getDayOFWeekNameByDate(date) {
+    return date.toLocaleString('en', {weekday: 'long'});
 }

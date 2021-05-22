@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&display=swap');
 
 table {
-    top: 10%;
+    top: 5%;
     border-spacing: 15px;
     width: 100%;
     max-width: 800px;
-    margin: calc(150px + -1 * 5%) auto auto;
+    margin: calc(100px + -1 * 5%) auto auto;
     font-size: calc(2vmax + 20%);
     min-font-size: 400%;
     text-shadow: 0 0 8px black, 0 0 11px black;
