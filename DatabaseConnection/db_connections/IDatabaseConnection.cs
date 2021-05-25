@@ -31,5 +31,9 @@ namespace DatabaseConnection.db_connections
         List<TimeInterval> GetTimeIntervals();
 
         List<Haircut> GetHaircuts();
+
+        List<Compatibility> GetCompatibilities();
+
+        void SaveOrUpdate(Compatibility compatibility);
     }
 }

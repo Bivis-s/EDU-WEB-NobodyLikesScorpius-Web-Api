@@ -71,5 +71,27 @@ namespace DatabaseConnection.factories
 
             return timeIntervals;
         }
+
+        public static List<Compatibility> CreateCompatibilityList(SQLiteDataReader dataReader,
+            db_connections.DatabaseConnection databaseConnection)
+        {
+            var compatibilities = new List<Compatibility>();
+            while (dataReader.Read())
+            {
+                var zodiacId1 = dataReader.GetInt32(0);
+                var zodiacId2 = dataReader.GetInt32(1);
+                var compatibilityValue = dataReader.GetInt32(2);
+                var textValue = dataReader.GetString(3);
+                compatibilities.Add(new Compatibility(
+                        databaseConnection.GetZodiac(zodiacId1),
+                        databaseConnection.GetZodiac(zodiacId2),
+                        compatibilityValue,
+                        textValue
+                    )
+                );
+            }
+
+            return compatibilities;
+        }
     }
 }

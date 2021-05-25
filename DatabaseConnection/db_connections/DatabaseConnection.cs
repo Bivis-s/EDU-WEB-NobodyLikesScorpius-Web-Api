@@ -360,7 +360,40 @@ namespace DatabaseConnection.db_connections
             command.Parameters.AddWithValue("prediction", haircut.Prediction);
             command.Parameters.AddWithValue("isPositive", haircut.IsPositive);
             command.Parameters.AddWithValue("id", haircut.Id);
-            // command.Prepare();
+            Console.WriteLine("Execute SQL: " + command.CommandText);
+            command.ExecuteNonQuery();
+        }
+
+        #endregion
+
+        #region Compatibilities
+
+        public List<Compatibility> GetCompatibilities()
+        {
+            using var command = _connection.CreateCommand();
+            command.Connection = _connection;
+            command.CommandText =
+                $"select {Compatibility.GetZodiac1ColumnName()}, {Compatibility.GetZodiac2ColumnName()}, " +
+                $"{Compatibility.GetCompatibilityValueColumnName()}, {Compatibility.GetTextValueColumnName()} " +
+                $"from {Compatibility.GetTableName()};";
+            Console.WriteLine("Execute SQL: " + command.CommandText);
+            return Factory.CreateCompatibilityList(command.ExecuteReader(), this);
+        }
+
+        public void SaveOrUpdate(Compatibility compatibility)
+        {
+            using var command = _connection.CreateCommand();
+            command.Connection = _connection;
+            command.CommandText =
+                $"update {Compatibility.GetTableName()} " +
+                $"set {Compatibility.GetCompatibilityValueColumnName()} = :compatibilityValue, " +
+                $"{Compatibility.GetTextValueColumnName()} = :textValue " +
+                $"where {Compatibility.GetZodiac1ColumnName()} = zodiacId1: " +
+                $"and  {Compatibility.GetZodiac1ColumnName()} = :zodiacId2;";
+            command.Parameters.AddWithValue("compatibilityValue", compatibility.CompatibilityValue);
+            command.Parameters.AddWithValue("textValue", compatibility.TextValue);
+            command.Parameters.AddWithValue("zodiacId1", compatibility.Zodiac1.Id);
+            command.Parameters.AddWithValue("zodiacId2", compatibility.Zodiac2.Id);
             Console.WriteLine("Execute SQL: " + command.CommandText);
             command.ExecuteNonQuery();
         }

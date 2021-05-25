@@ -74,6 +74,16 @@ namespace DatabaseConnection
             return GetDatabaseConnection().GetHaircuts();
         }
 
+        public List<Compatibility> GetCompatibilities()
+        {
+            return GetDatabaseConnection().GetCompatibilities();
+        }
+
+        public void SaveOrUpdate(Compatibility compatibility)
+        {
+            GetDatabaseConnection().SaveOrUpdate(compatibility);
+        }
+
         private db_connections.DatabaseConnection GetDatabaseConnection()
         {
             return _databaseConnection ??=
