@@ -39,6 +39,40 @@
         <div id="prediction_text"></div>
     </article>
     <hr>
+    <a href="../compatibility.html"><h2>Compatibility</h2></a>
+    <article>
+        <div id="compatibilities_section">
+            <label>
+                <textarea cols="64" rows="8" name="Text" placeholder="Enter new compatibility text"></textarea>
+            </label>
+            <br>
+                <table id="compatibility_value_container">
+                    <tbody>
+                    <tr>
+                        <td><b>Compatibility: </b></td>
+                        <td><input id="compatibility_value_input" name="Zodiac" title="Compatibility value"/></td>
+                        <td><b> %</b></td>
+                    </tr>
+                    </tbody>
+                </table>
+            <br>
+            <label>
+                <select class="inline_select" id="compatibilities_zodiac_1"
+                        onchange="updateCompatibilitiesText()"></select>
+            </label>
+            <label>
+                <select class="inline_select" id="compatibilities_zodiac_2"
+                        onchange="updateCompatibilitiesText()"></select>
+            </label>
+
+            <br>
+            <button onclick="updateCompatibilityInDb()">Submit</button>
+            <p id="compatibilitiesSuccessMessage"></p>
+            <h4>Current compatibility text:</h4>
+            <div id="compatibilities_text"></div>
+        </div>
+    </article>
+    <hr>
     <a href="../haircuts.html"><h2>Haircuts</h2></a>
     <article>
         <table id="haircut_table">
@@ -47,5 +81,6 @@
     </article>
 </main>
 </body>
+<script src="../../scripts/get_compatibilities.js"></script>
 <script src="../../scripts/admin_dashboard.js"></script>
 </html>

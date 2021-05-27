@@ -19,10 +19,16 @@ getIsAdminAuthorized(getParamFromUrl("sessionToken")).then((data) => {
     }
 });
 
+// set zodiac options to zodiac select in predictions and compatibilities section
+let predictionSelectZodiac = document.querySelector("#zodiac");
+let compatibility1SelectZodiac = document.querySelector("#compatibilities_zodiac_1");
+let compatibility2SelectZodiac = document.querySelector("#compatibilities_zodiac_2");
 getZodiacs().then((data) => {
     data.forEach((zodiac) => {
-        let selectZodiac = document.querySelector("#zodiac");
-        selectZodiac.innerHTML = selectZodiac.innerHTML + "<option value='" + zodiac.type + "'>" + zodiac.name + "</option>\n";
+        let option = "<option value='" + zodiac.type + "'>" + zodiac.name + "</option>\n";
+        predictionSelectZodiac.innerHTML += option;
+        compatibility1SelectZodiac.innerHTML += option;
+        compatibility2SelectZodiac.innerHTML += option;
     })
 });
 
@@ -168,3 +174,18 @@ function subForm(formSelector, buttonSelector) {
     });
     document.querySelector(buttonSelector).style.color = "green";
 }
+
+// update text for compatibilities on page
+function updateCompatibilitiesText() {
+    let zodiac1Number = $("#compatibilities_zodiac_1 option:selected").val();
+    let zodiac2Number = $("#compatibilities_zodiac_2 option:selected").val();
+    getCompatibilityFromDb(zodiac1Number, zodiac2Number).then((compatibility) => {
+        let compatibilityTextArea = document.querySelector("#compatibilities_text");
+        let compatibilityValueInput = document.querySelector("#compatibility_value_input");
+        compatibilityTextArea.innerHTML = compatibility.textValue;
+        compatibilityValueInput.value = compatibility.compatibilityValue;
+    });
+}
+
+// update text for compatibilities on page AT START
+updateCompatibilitiesText();

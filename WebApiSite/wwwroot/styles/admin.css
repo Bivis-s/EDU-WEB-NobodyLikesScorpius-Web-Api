@@ -14,6 +14,7 @@ textarea {
 h2 {
     text-align: center;
     font-size: 36px;
+    padding-bottom: 12px;
 }
 
 select {
@@ -54,4 +55,33 @@ td {
 #haircut_table textarea {
     height: 125px;
     width: 300px;
+}
+
+.inline_select {
+    display: inline;
+    width: 360px;
+}
+
+#compatibility_value_input {
+    margin: auto;
+    text-align: center;
+    width: 100px;
+}
+
+#compatibility_value_container {
+    margin: auto;
+    text-align: center;
+}
+
+#compatibility_value_container td {
+    width: 33%;
+    border: 0;
+}
+
+#compatibility_value_container td:nth-child(1) {
+    text-align: end;
+}
+
+#compatibility_value_container td:nth-child(3) {
+    text-align: start;
 }
