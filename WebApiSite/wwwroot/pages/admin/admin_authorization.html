@@ -2,20 +2,20 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin authorization</title>
+    <title>Авторизация админа</title>
 </head>
 <body>
 <main>
-    <h1>Admin authorization</h1>
-    <a href="../../index.html"><h3 title="Back">Go back</h3></a>
+    <h1>Авторизация админа</h1>
+    <a href="../../index.html"><h3 title="Back">Вернуться</h3></a>
     <form action="/AdminAuthorization">
-        <label for="login">Login:</label><br>
+        <label for="login">Логин:</label><br>
         <input type="text" id="login" name="login"><br>
-        <label for="password">Password:</label><br>
+        <label for="password">Пароль:</label><br>
         <input type="password" id="password" name="password"><br><br>
-        <input type="submit" value="Submit">
+        <input type="submit" value="Отправить">
     </form>
-    <p id="invalid_auth" style="display: none;">Authorization error, plase try again</p>
+    <p id="invalid_auth" style="display: none;">Ошибка авторизации, пожалуйста, повторите попытку</p>
 </main>
 </body>
 <script src="../../scripts/get_params_from_url.js"></script>

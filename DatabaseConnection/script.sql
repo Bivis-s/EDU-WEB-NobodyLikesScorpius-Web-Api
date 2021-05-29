@@ -30,20 +30,21 @@ create table predictions
 
 create table compatibilities
 (
-    zodiac1_id          integer,
-    zodiac2_id          integer,
+    id                  integer primary key autoincrement,
+    zodiac1_type        integer,
+    zodiac2_type        integer,
     compatibility_value integer,
     text_value          text,
-    foreign key (zodiac1_id) references zodiacs (id),
-    foreign key (zodiac2_id) references zodiacs (id)
+    foreign key (zodiac1_type) references zodiacs (enum_number),
+    foreign key (zodiac2_type) references zodiacs (enum_number)
 );
 
 create table haircuts
 (
     id          integer
         primary key autoincrement,
-    zodiac_id   integer
-        references zodiacs,
+    zodiac_type integer
+        references zodiacs (enum_number),
     moon_day    text,
     moon_phase  text,
     prediction  text,
@@ -51,8 +52,8 @@ create table haircuts
     check (is_positive in (0, 1))
 );
 
-insert into haircuts(zodiac_id, moon_day, moon_phase, prediction, is_positive)
-values (1, '228', 'huita', 'smeeert', 1); 
+select *
+from haircuts;
 
 create table admins
 (
@@ -96,7 +97,7 @@ values ('Weekly horoscope', 2);
 insert into time_intervals (name, enum_number)
 values ('Monthly horoscope', 3);
 
--- predictions
+-- Predictions
 
 insert into predictions (zodiac_id, time_interval_id, text_value)
 values (1, 1,
@@ -243,8 +244,670 @@ insert into predictions (zodiac_id, time_interval_id, text_value)
 values (12, 4,
         'Just five more minutes… Is it 1358 yet? No? Then fuck off! When you play a game of thrones you win or you die. <br>Oh year... the Elder Blood can be fiery When you play a game of thrones you win or you die. Just five more minutes… Is it 1358 yet? No? Then fuck off! And I have a tender spot in my heart for cripples and bastards and broken things. <br>Hide the wenches, Witcher''s coming!! Nothing burns like the cold. <br>Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world. You get what you get and be happy with it And so he spoke, and so he spoke, that Lord of Castamere, but now the rains weep o''er his hall, with no one there to hear. Yes, now the rains weep o''er his hall, and not a soul to hear. <br>You get what you get and be happy with it Never forget who you are. The rest of the world won''t. Wear it like an armor and it can never be used against you. <br>Damn, Eskel... you got an hourglass figure When you play a game of thrones you win or you die. <br>No Lollygagin''! I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat Do the dead frighten you? Just five more minutes… Is it 1358 yet? No? Then fuck off! Knowledge could be more valuable than gold, more deadly than a dagger. <br><br>Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world. And so he spoke, and so he spoke, that Lord of Castamere, but now the rains weep o''er his hall, with no one there to hear. Yes, now the rains weep o''er his hall, and not a soul to hear. <br>Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world. Give me honorable enemies rather than ambitious ones, and I''ll sleep more easily by night. Damn, Eskel... you got an hourglass figure Hide the wenches, Witcher''s coming!! Some old wounds never truly heal, and bleed again at the slightest word. You get what you get and be happy with it No Lollygagin''! Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world. A lion doesn''t concern itself with the opinion of sheep. <br><br>I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat Knowledge could be more valuable than gold, more deadly than a dagger. <br>Just five more minutes… Is it 1358 yet? No? Then fuck off! Give me honorable enemies rather than ambitious ones, and I''ll sleep more easily by night. <br>You get what you get and be happy with it Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world. Oh year... the Elder Blood can be fiery When the snows fall and the white winds blow, the lone wolf dies but the pack survives. No Lollygagin''! And so he spoke, and so he spoke, that Lord of Castamere, but now the rains weep o''er his hall, with no one there to hear. Yes, now the rains weep o''er his hall, and not a soul to hear. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world. Why is it that when one man builds a wall, the next man immediately needs to know what''s on the other side? <br>I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat Summer will end soon enough, and childhood as well. You get what you get and be happy with it Never forget who you are. The rest of the world won''t. Wear it like an armor and it can never be used against you. <br>No Lollygagin''! Never forget who you are. The rest of the world won''t. Wear it like an armor and it can never be used against you. Damn, Eskel... you got an hourglass figure Every flight begins with a fall. You get what you get and be happy with it ');
 
--- endpredictions
+-- End Predictions
 
+-- Compatibilities
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (0, 0, 21,
+        'Let me guess, somebody stole your sweetroll. After all this time? Always. Power is a curious thing. Who lives, Who dies. Power resides where men believe it resides. It is a trick, A shadow on the wall. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (0, 1, 36,
+        'Quiet, here comes the guard. You better do what they say. Words are in my not-so-humble opinion, the most inexhaustible form of magic we have, capable both of inflicting injury and remedying it. Summer will end soon enough, and childhood as well. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (0, 2, 44,
+        'I''d be a lot happier and a lot warmer with a belly full of mead. If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals. Give me honorable enemies rather than ambitious ones, and I''ll sleep more easily by night. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (0, 3, 88,
+        'May your roads lead to warm sands. There are some things you can''t share without ending up liking each other, and knocking out a twelve-foot mountain troll is one of them. Hodor? Hodor. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (0, 4, 81,
+        'You impossible fool. What possessed you to think I would suggest a meeting here, of all places? No story lives unless someone wants to listen. The stories we love best do live in us forever. So whether you come back by page or by the big screen, Hogwarts will always be there to welcome you home. The North remembers. No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (0, 5, 72,
+        'Combatant from the blue team. You may leave the arena and rest now. You have earned it. It’s wingardium leviOsa, not leviosAH. Some old wounds never truly heal, and bleed again at the slightest word. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (0, 6, 31,
+        'What is better: To be born good, or to overcome one''s evil nature through great effort? It does not do to dwell on dreams and forget to live. Every flight begins with a fall. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (0, 7, 72,
+        'Hey, there''s my new pal! So what can I do for you? Need some items? Or maybe you ready to unload something? Whatever you need! You sort of start thinking anything’s possible if you’ve got enough nerve. Summer will end soon enough, and childhood as well. Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (0, 8, 51,
+        'My ancestors are smiling at me, Imperials. Can you say the same? It does not do to dwell on dreams and forget to live. Why is it that when one man builds a wall, the next man immediately needs to know what''s on the other side? Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (0, 9, 80,
+        'He killed them! All of those people! We… we have to get him before he gets us! We have to kill that murdering swine! To the well-organized mind, death is but the next great adventure. Every flight begins with a fall. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (0, 10, 20,
+        'The results of hard work and dedication always look like luck. But you know you''ve earned every ounce of your success. Just because you have the emotional range of a teaspoon doesn’t mean we all have. Fear cuts deeper than swords. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (0, 11, 5,
+        'Never should have come here. It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends. Nothing burns like the cold. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (1, 0, 44,
+        'The results of hard work and dedication always look like luck. But you know you''ve earned every ounce of your success. After all this time? Always. There are no heroes...in life, the monsters win. Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (1, 1, 43,
+        'Sometimes life puts you in difficult circumstances you didn''t choose. But being happy or unhappy is a choice you make, and I''ve chosen to make the best of things that I can. To the well-organized mind, death is but the next great adventure. Fear cuts deeper than swords. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (1, 2, 83,
+        'I''m not a man, I''m a weapon in human form. No story lives unless someone wants to listen. The stories we love best do live in us forever. So whether you come back by page or by the big screen, Hogwarts will always be there to welcome you home. When the snows fall and the white winds blow, the lone wolf dies but the pack survives. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (1, 3, 87,
+        'You will find your own path. Take care... there will be blood and death before the end. Of course it is happening inside your head, Harry, but why on earth should that mean that it is not real? There are no heroes...in life, the monsters win. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (1, 4, 15,
+        'Never should have come here. I solemnly swear that I am up to no good. And so he spoke, and so he spoke, that Lord of Castamere, but now the rains weep o''er his hall, with no one there to hear. Yes, now the rains weep o''er his hall, and not a soul to hear. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (1, 5, 6,
+        'Candy, candy -- he makes so much. Uncle Sweetshare has a magic touch! So it''s back to the workshop in the snow! With lovely lanterns all aglow! He he! Ha ho! He he he ha ha ho! We’ve all got both light and dark inside us. What matters is the part we choose to act on. That’s who we really are. Never forget who you are. The rest of the world won''t. Wear it like an armor and it can never be used against you. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (1, 6, 77,
+        'Combatant from the blue team. You may leave the arena and rest now. You have earned it. We could all have been killed - or worse, expelled. When you play a game of thrones you win or you die. Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (1, 7, 78,
+        'Not even last quarter''s storm could wake you. I heard them say we''ve reached Adulthood, I''m sure they''ll let us go. Things we lose have a way of coming back to us in the end, if not always in the way we expect. When the snows fall and the white winds blow, the lone wolf dies but the pack survives. No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (1, 8, 81,
+        'Stupid bees and their stupid honey! After all this time? Always. Give me honorable enemies rather than ambitious ones, and I''ll sleep more easily by night. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (1, 9, 97,
+        'You plod along, putting one foot before the other, look up, and suddenly, there you are. Right where you wanted to be all along. Things we lose have a way of coming back to us in the end, if not always in the way we expect. Some old wounds never truly heal, and bleed again at the slightest word. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (1, 10, 87,
+        'Some may call this junk, me, I call them treasures. If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals. Every flight begins with a fall. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (1, 11, 46,
+        'Sometimes life puts you in difficult circumstances you didn''t choose. But being happy or unhappy is a choice you make, and I''ve chosen to make the best of things that I can. Words are in my not-so-humble opinion, the most inexhaustible form of magic we have, capable both of inflicting injury and remedying it. Knowledge could be more valuable than gold, more deadly than a dagger. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (2, 0, 12,
+        'STOP RIGHT THERE YOU CRIMINAL SCUM! It is the unknown we fear when we look upon death and darkness, nothing more. Knowledge could be more valuable than gold, more deadly than a dagger. No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (2, 1, 16,
+        'Treasure the gifts of friendship. Seek joy and inspiration in the mysteries of love. It does not do to dwell on dreams and forget to live. Why is it that when one man builds a wall, the next man immediately needs to know what''s on the other side? Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (2, 2, 44,
+        'I''m not a man, I''m a weapon in human form. Never trust anything that can think for itself if you can''t see where it keeps its brain. Winter is coming. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (2, 3, 75,
+        'KHAJIIT HAS WARES, IF YOU HAVE COIN No story lives unless someone wants to listen. The stories we love best do live in us forever. So whether you come back by page or by the big screen, Hogwarts will always be there to welcome you home. Once you’ve accepted your flaws, no one can use them against you. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (2, 4, 1,
+        'Not even last quarter''s storm could wake you. I heard them say we''ve reached Adulthood, I''m sure they''ll let us go. Never trust anything that can think for itself if you can''t see where it keeps its brain. All dwarfs are bastards in their father''s eyes Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (2, 5, 88,
+        'Candy, candy -- he makes so much. Uncle Sweetshare has a magic touch! So it''s back to the workshop in the snow! With lovely lanterns all aglow! He he! Ha ho! He he he ha ha ho! It is the unknown we fear when we look upon death and darkness, nothing more. And I have a tender spot in my heart for cripples and bastards and broken things. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (2, 6, 92,
+        'Wake up. We''re here. Why are you shaking? Are you okay? Wake up. Never trust anything that can think for itself if you can''t see where it keeps its brain. The North remembers. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (2, 7, 11,
+        'My ancestors are smiling at me, Imperials. Can you say the same? After all this time? Always. ... a mind needs books as a sword needs a whetstone, if it is to keep its edge. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (2, 8, 17,
+        'Never should have come here. Of course it is happening inside your head, Harry, but why on earth should that mean that it is not real? When the snows fall and the white winds blow, the lone wolf dies but the pack survives. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (2, 9, 39,
+        'Brave hearts beat lesser ones. That''s the decider. It is our choices, Harry, that show what we truly are, far more than our abilities. Why is it that when one man builds a wall, the next man immediately needs to know what''s on the other side? Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (2, 10, 34,
+        'Wake up. We''re here. Why are you shaking? Are you okay? Wake up. We could all have been killed - or worse, expelled. The things I do for love. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (2, 11, 41,
+        'Let me guess, somebody stole your sweetroll. No story lives unless someone wants to listen. The stories we love best do live in us forever. So whether you come back by page or by the big screen, Hogwarts will always be there to welcome you home. All dwarfs are bastards in their father''s eyes I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (3, 0, 58,
+        'You will find your own path. Take care... there will be blood and death before the end. It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends. When the snows fall and the white winds blow, the lone wolf dies but the pack survives. Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (3, 1, 76,
+        'I''d be a lot happier and a lot warmer with a belly full of mead. There are some things you can''t share without ending up liking each other, and knocking out a twelve-foot mountain troll is one of them. Why is it that when one man builds a wall, the next man immediately needs to know what''s on the other side? Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (3, 2, 46,
+        'KHAJIIT HAS WARES, IF YOU HAVE COIN It is the unknown we fear when we look upon death and darkness, nothing more. Give me honorable enemies rather than ambitious ones, and I''ll sleep more easily by night. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (3, 3, 60,
+        'Have you heard of the high elves? You''re a wizard, Harry. Do the dead frighten you? Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (3, 4, 0,
+        'Wake up. We''re here. Why are you shaking? Are you okay? Wake up. We could all have been killed - or worse, expelled. Do the dead frighten you? Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (3, 5, 37,
+        'When we understand the events that occur to us, the events become history. History is understanding. Otherwise we are all just dumb animals trying to get in out of the cold. We’ve all got both light and dark inside us. What matters is the part we choose to act on. That’s who we really are. The North remembers. No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (3, 6, 92,
+        'Sometimes life puts you in difficult circumstances you didn''t choose. But being happy or unhappy is a choice you make, and I''ve chosen to make the best of things that I can. Harry, suffering like this proves you are still a man! This pain is part of being human...the fact that you can feel pain like this is your greatest strength. ... a mind needs books as a sword needs a whetstone, if it is to keep its edge. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (3, 7, 66,
+        'Skooma! Oh yeah… You want to… want to be my friend? I''ll… I''ll tell you what… Skooma''s the only thing… the only thing I want… Of course it is happening inside your head, Harry, but why on earth should that mean that it is not real? Power is a curious thing. Who lives, Who dies. Power resides where men believe it resides. It is a trick, A shadow on the wall. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (3, 8, 38,
+        'I still don''t know if there is a divine plan, but I''ve come to realize that it doesn''t matter. What matters is that we act; that we do what''s right when confronted with evil. That''s what you did at Kvatch. It wasn''t the gods that saved us, it was you. To the well-organized mind, death is but the next great adventure. There are no heroes...in life, the monsters win. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (3, 9, 92,
+        'You impossible fool. What possessed you to think I would suggest a meeting here, of all places? No story lives unless someone wants to listen. The stories we love best do live in us forever. So whether you come back by page or by the big screen, Hogwarts will always be there to welcome you home. When the snows fall and the white winds blow, the lone wolf dies but the pack survives. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (3, 10, 35,
+        'It''s the grand champion! I can''t believe it''s you, standing here, next to me! You sort of start thinking anything’s possible if you’ve got enough nerve. Do the dead frighten you? You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (3, 11, 47,
+        'I''m not a man, I''m a weapon in human form. To the well-organized mind, death is but the next great adventure. Never forget who you are. The rest of the world won''t. Wear it like an armor and it can never be used against you. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (4, 0, 59,
+        'Not even last quarter''s storm could wake you. I heard them say we''ve reached Adulthood, I''m sure they''ll let us go. Of course it is happening inside your head, Harry, but why on earth should that mean that it is not real? Knowledge could be more valuable than gold, more deadly than a dagger. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (4, 1, 21,
+        'I still don''t know if there is a divine plan, but I''ve come to realize that it doesn''t matter. What matters is that we act; that we do what''s right when confronted with evil. That''s what you did at Kvatch. It wasn''t the gods that saved us, it was you. It is the unknown we fear when we look upon death and darkness, nothing more. Nothing burns like the cold. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (4, 2, 52,
+        'Change will preserve us! It is the lifeblood of the world. It will move mountains! It will mount movements! It is the unknown we fear when we look upon death and darkness, nothing more. Fear cuts deeper than swords. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (4, 3, 24,
+        'The results of hard work and dedication always look like luck. But you know you''ve earned every ounce of your success. We could all have been killed - or worse, expelled. And so he spoke, and so he spoke, that Lord of Castamere, but now the rains weep o''er his hall, with no one there to hear. Yes, now the rains weep o''er his hall, and not a soul to hear. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (4, 4, 56,
+        'The results of hard work and dedication always look like luck. But you know you''ve earned every ounce of your success. Words are in my not-so-humble opinion, the most inexhaustible form of magic we have, capable both of inflicting injury and remedying it. The things I do for love. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (4, 5, 68,
+        'What a fool you are. I''m a god! How can you kill a god? How could you be so naive? What a grand and intoxicating innocence. There is no escape. No recall or intervention works in this place. Come, lay down your weapons. It is not to late for my mercy. Dark and difficult times lie ahead. Soon we must all face the choice between what is right and what is easy. Never forget who you are. The rest of the world won''t. Wear it like an armor and it can never be used against you. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (4, 6, 61,
+        'Skooma! Oh yeah… You want to… want to be my friend? I''ll… I''ll tell you what… Skooma''s the only thing… the only thing I want… Dark and difficult times lie ahead. Soon we must all face the choice between what is right and what is easy. Hodor? Hodor. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (4, 7, 52,
+        'My ancestors are smiling at me, Imperials. Can you say the same? There are some things you can''t share without ending up liking each other, and knocking out a twelve-foot mountain troll is one of them. The things I do for love. Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (4, 8, 5,
+        'Can''t wait to count out your coin! You sort of start thinking anything’s possible if you’ve got enough nerve. Nothing burns like the cold. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (4, 9, 99,
+        'You will find your own path. Take care... there will be blood and death before the end. If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals. Never forget who you are. The rest of the world won''t. Wear it like an armor and it can never be used against you. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (4, 10, 12,
+        'Why walk when you can ride? Harry, suffering like this proves you are still a man! This pain is part of being human...the fact that you can feel pain like this is your greatest strength. Never forget who you are. The rest of the world won''t. Wear it like an armor and it can never be used against you. No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (4, 11, 5,
+        'I''d be a lot happier and a lot warmer with a belly full of mead. Never trust anything that can think for itself if you can''t see where it keeps its brain. Laughter is poison to fear. Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (5, 0, 78,
+        'KHAJIIT HAS WARES, IF YOU HAVE COIN Happiness can be found even in the darkest of times if only one remembers to turn on the light. The things I do for love. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (5, 1, 14,
+        'Let me guess, somebody stole your sweetroll. You''re a wizard, Harry. And so he spoke, and so he spoke, that Lord of Castamere, but now the rains weep o''er his hall, with no one there to hear. Yes, now the rains weep o''er his hall, and not a soul to hear. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (5, 2, 88,
+        'He killed them! All of those people! We… we have to get him before he gets us! We have to kill that murdering swine! It does not do to dwell on dreams and forget to live. Nothing burns like the cold. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (5, 3, 60,
+        'Change will preserve us! It is the lifeblood of the world. It will move mountains! It will mount movements! It does not do to dwell on dreams and forget to live. When the snows fall and the white winds blow, the lone wolf dies but the pack survives. No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (5, 4, 26,
+        'Let me guess, somebody stole your sweetroll. It is the unknown we fear when we look upon death and darkness, nothing more. The things I do for love. No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (5, 5, 10,
+        'I''m not a man, I''m a weapon in human form. We’ve all got both light and dark inside us. What matters is the part we choose to act on. That’s who we really are. The things I do for love. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (5, 6, 5,
+        'Brave hearts beat lesser ones. That''s the decider. After all this time? Always. The North remembers. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (5, 7, 25,
+        'Children, listen as the shadows cross your sleeping hutch, And the village sleeps away, streets emptied of the crowds, And the moons do balefully glare through the nightly clouds, And the graveyard''s people rest, we hope, in eternal sleep, Listen and you''ll hear the whispered tap of the footsteps creep, Then pray you''ll never feel the Worm King''s awful touch. We’ve all got both light and dark inside us. What matters is the part we choose to act on. That’s who we really are. Winter is coming. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (5, 8, 35,
+        'What is better: To be born good, or to overcome one''s evil nature through great effort? Things we lose have a way of coming back to us in the end, if not always in the way we expect. Things are not always as they seemed, much that may seem evil can be good. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (5, 9, 29,
+        'It''s the grand champion! I can''t believe it''s you, standing here, next to me! Dark and difficult times lie ahead. Soon we must all face the choice between what is right and what is easy. When the snows fall and the white winds blow, the lone wolf dies but the pack survives. Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (5, 10, 79,
+        'Do you get to the cloud district very often? We could all have been killed - or worse, expelled. A lion doesn''t concern itself with the opinion of sheep. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (5, 11, 8,
+        'Quiet, here comes the guard. You better do what they say. We could all have been killed - or worse, expelled. All dwarfs are bastards in their father''s eyes No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (6, 0, 76,
+        'Brave hearts beat lesser ones. That''s the decider. We could all have been killed - or worse, expelled. Things are not always as they seemed, much that may seem evil can be good. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (6, 1, 95,
+        'Hey, there''s my new pal! So what can I do for you? Need some items? Or maybe you ready to unload something? Whatever you need! To the well-organized mind, death is but the next great adventure. Every flight begins with a fall. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (6, 2, 84,
+        'The best techniques are passed on by the survivors. Things we lose have a way of coming back to us in the end, if not always in the way we expect. The things I do for love. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (6, 3, 40,
+        'Remember, your mind is the best weapon you have. After all this time? Always. ... a mind needs books as a sword needs a whetstone, if it is to keep its edge. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (6, 4, 65,
+        'Do you get to the cloud district very often? Of course it is happening inside your head, Harry, but why on earth should that mean that it is not real? ... a mind needs books as a sword needs a whetstone, if it is to keep its edge. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (6, 5, 93,
+        'Quiet, here comes the guard. You better do what they say. It is the unknown we fear when we look upon death and darkness, nothing more. Never forget who you are. The rest of the world won''t. Wear it like an armor and it can never be used against you. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (6, 6, 29,
+        'Hey, there''s my new pal! So what can I do for you? Need some items? Or maybe you ready to unload something? Whatever you need! If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals. ... a mind needs books as a sword needs a whetstone, if it is to keep its edge. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (6, 7, 85,
+        'Hey, there''s my new pal! So what can I do for you? Need some items? Or maybe you ready to unload something? Whatever you need! It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends. A lion doesn''t concern itself with the opinion of sheep. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (6, 8, 95,
+        'Can''t wait to count out your coin! You sort of start thinking anything’s possible if you’ve got enough nerve. Do the dead frighten you? You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (6, 9, 3,
+        'Skooma! Oh yeah… You want to… want to be my friend? I''ll… I''ll tell you what… Skooma''s the only thing… the only thing I want… Harry, suffering like this proves you are still a man! This pain is part of being human...the fact that you can feel pain like this is your greatest strength. Give me honorable enemies rather than ambitious ones, and I''ll sleep more easily by night. No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (6, 10, 11,
+        'Children, listen as the shadows cross your sleeping hutch, And the village sleeps away, streets emptied of the crowds, And the moons do balefully glare through the nightly clouds, And the graveyard''s people rest, we hope, in eternal sleep, Listen and you''ll hear the whispered tap of the footsteps creep, Then pray you''ll never feel the Worm King''s awful touch. Dark and difficult times lie ahead. Soon we must all face the choice between what is right and what is easy. Never forget who you are. The rest of the world won''t. Wear it like an armor and it can never be used against you. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (6, 11, 61,
+        'Do you get to the cloud district very often? There are some things you can''t share without ending up liking each other, and knocking out a twelve-foot mountain troll is one of them. Power is a curious thing. Who lives, Who dies. Power resides where men believe it resides. It is a trick, A shadow on the wall. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (7, 0, 15,
+        'What is better: To be born good, or to overcome one''s evil nature through great effort? You sort of start thinking anything’s possible if you’ve got enough nerve. Knowledge could be more valuable than gold, more deadly than a dagger. No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (7, 1, 81,
+        'Change will preserve us! It is the lifeblood of the world. It will move mountains! It will mount movements! It does not do to dwell on dreams and forget to live. Nothing burns like the cold. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (7, 2, 8,
+        'Some may call this junk, me, I call them treasures. There are some things you can''t share without ending up liking each other, and knocking out a twelve-foot mountain troll is one of them. Fear cuts deeper than swords. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (7, 3, 30,
+        'No lollygagin It’s wingardium leviOsa, not leviosAH. Some old wounds never truly heal, and bleed again at the slightest word. Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (7, 4, 92,
+        'Can''t wait to count out your coin! It is our choices, Harry, that show what we truly are, far more than our abilities. There are no heroes...in life, the monsters win. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (7, 5, 71,
+        'Wake up. We''re here. Why are you shaking? Are you okay? Wake up. Words are in my not-so-humble opinion, the most inexhaustible form of magic we have, capable both of inflicting injury and remedying it. There are no heroes...in life, the monsters win. No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (7, 6, 42,
+        'Quiet, here comes the guard. You better do what they say. There are some things you can''t share without ending up liking each other, and knocking out a twelve-foot mountain troll is one of them. Do the dead frighten you? Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (7, 7, 98,
+        'I''m not a man, I''m a weapon in human form. Never trust anything that can think for itself if you can''t see where it keeps its brain. There are no heroes...in life, the monsters win. No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (7, 8, 75,
+        'STOP RIGHT THERE YOU CRIMINAL SCUM! Things we lose have a way of coming back to us in the end, if not always in the way we expect. Summer will end soon enough, and childhood as well. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (7, 9, 73,
+        'Change will preserve us! It is the lifeblood of the world. It will move mountains! It will mount movements! Words are in my not-so-humble opinion, the most inexhaustible form of magic we have, capable both of inflicting injury and remedying it. Give me honorable enemies rather than ambitious ones, and I''ll sleep more easily by night. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (7, 10, 86,
+        'Brave hearts beat lesser ones. That''s the decider. Dark and difficult times lie ahead. Soon we must all face the choice between what is right and what is easy. A lion doesn''t concern itself with the opinion of sheep. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (7, 11, 17,
+        'You plod along, putting one foot before the other, look up, and suddenly, there you are. Right where you wanted to be all along. Happiness can be found even in the darkest of times if only one remembers to turn on the light. When the snows fall and the white winds blow, the lone wolf dies but the pack survives. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (8, 0, 35,
+        'No lollygagin It’s wingardium leviOsa, not leviosAH. Every flight begins with a fall. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (8, 1, 11,
+        'You impossible fool. What possessed you to think I would suggest a meeting here, of all places? To the well-organized mind, death is but the next great adventure. Why is it that when one man builds a wall, the next man immediately needs to know what''s on the other side? Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (8, 2, 5,
+        'Combatant from the blue team. You may leave the arena and rest now. You have earned it. Happiness can be found even in the darkest of times if only one remembers to turn on the light. Laughter is poison to fear. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (8, 3, 8,
+        'You impossible fool. What possessed you to think I would suggest a meeting here, of all places? You''re a wizard, Harry. A lion doesn''t concern itself with the opinion of sheep. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (8, 4, 51,
+        'Some may call this junk, me, I call them treasures. You''re a wizard, Harry. Give me honorable enemies rather than ambitious ones, and I''ll sleep more easily by night. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (8, 5, 86,
+        'Never should have come here. Happiness can be found even in the darkest of times if only one remembers to turn on the light. The things I do for love. Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (8, 6, 59,
+        'I''d be a lot happier and a lot warmer with a belly full of mead. Harry, suffering like this proves you are still a man! This pain is part of being human...the fact that you can feel pain like this is your greatest strength. Winter is coming. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (8, 7, 24,
+        'Let me guess, somebody stole your sweetroll. It is our choices, Harry, that show what we truly are, far more than our abilities. Some old wounds never truly heal, and bleed again at the slightest word. Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (8, 8, 91,
+        'Not even last quarter''s storm could wake you. I heard them say we''ve reached Adulthood, I''m sure they''ll let us go. Of course it is happening inside your head, Harry, but why on earth should that mean that it is not real? Things are not always as they seemed, much that may seem evil can be good. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (8, 9, 54,
+        'Brave hearts beat lesser ones. That''s the decider. It is our choices, Harry, that show what we truly are, far more than our abilities. When you play a game of thrones you win or you die. Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (8, 10, 35,
+        'Do you get to the cloud district very often? It does not do to dwell on dreams and forget to live. A lion doesn''t concern itself with the opinion of sheep. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (8, 11, 70,
+        'Wealth beyond measure, Outlander. Just because you have the emotional range of a teaspoon doesn’t mean we all have. And I have a tender spot in my heart for cripples and bastards and broken things. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (9, 0, 94,
+        'Brave hearts beat lesser ones. That''s the decider. Just because you have the emotional range of a teaspoon doesn’t mean we all have. Some old wounds never truly heal, and bleed again at the slightest word. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (9, 1, 79,
+        'Candy, candy -- he makes so much. Uncle Sweetshare has a magic touch! So it''s back to the workshop in the snow! With lovely lanterns all aglow! He he! Ha ho! He he he ha ha ho! We’ve all got both light and dark inside us. What matters is the part we choose to act on. That’s who we really are. Power is a curious thing. Who lives, Who dies. Power resides where men believe it resides. It is a trick, A shadow on the wall. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (9, 2, 27,
+        'I''d be a lot happier and a lot warmer with a belly full of mead. Of course it is happening inside your head, Harry, but why on earth should that mean that it is not real? Things are not always as they seemed, much that may seem evil can be good. No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (9, 3, 82,
+        'What a fool you are. I''m a god! How can you kill a god? How could you be so naive? What a grand and intoxicating innocence. There is no escape. No recall or intervention works in this place. Come, lay down your weapons. It is not to late for my mercy. If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals. When you play a game of thrones you win or you die. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (9, 4, 65,
+        'Wait, I know you It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends. Knowledge could be more valuable than gold, more deadly than a dagger. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (9, 5, 97,
+        'Not even last quarter''s storm could wake you. I heard them say we''ve reached Adulthood, I''m sure they''ll let us go. Never trust anything that can think for itself if you can''t see where it keeps its brain. Give me honorable enemies rather than ambitious ones, and I''ll sleep more easily by night. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (9, 6, 85,
+        'Wealth beyond measure, Outlander. It is our choices, Harry, that show what we truly are, far more than our abilities. Do the dead frighten you? Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (9, 7, 63,
+        'May your roads lead to warm sands. Words are in my not-so-humble opinion, the most inexhaustible form of magic we have, capable both of inflicting injury and remedying it. When the snows fall and the white winds blow, the lone wolf dies but the pack survives. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (9, 8, 6,
+        'Let me guess, somebody stole your sweetroll. You''re a wizard, Harry. Things are not always as they seemed, much that may seem evil can be good. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (9, 9, 26,
+        'Combatant from the blue team. You may leave the arena and rest now. You have earned it. Harry, suffering like this proves you are still a man! This pain is part of being human...the fact that you can feel pain like this is your greatest strength. The things I do for love. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (9, 10, 0,
+        'Remember, your mind is the best weapon you have. We’ve all got both light and dark inside us. What matters is the part we choose to act on. That’s who we really are. All dwarfs are bastards in their father''s eyes No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (9, 11, 30,
+        'Let me guess, somebody stole your sweetroll. After all this time? Always. Fear cuts deeper than swords. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (10, 0, 56,
+        'What is better: To be born good, or to overcome one''s evil nature through great effort? Never trust anything that can think for itself if you can''t see where it keeps its brain. Laughter is poison to fear. No Lollygagin''!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (10, 1, 100,
+        'Quiet, here comes the guard. You better do what they say. Dark and difficult times lie ahead. Soon we must all face the choice between what is right and what is easy. Nothing burns like the cold. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (10, 2, 82,
+        'Hey, there''s my new pal! So what can I do for you? Need some items? Or maybe you ready to unload something? Whatever you need! If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals. Knowledge could be more valuable than gold, more deadly than a dagger. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (10, 3, 3,
+        'Never should have come here. To the well-organized mind, death is but the next great adventure. And I have a tender spot in my heart for cripples and bastards and broken things. Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (10, 4, 39,
+        'You will find your own path. Take care... there will be blood and death before the end. If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals. Hodor? Hodor. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (10, 5, 23,
+        'You impossible fool. What possessed you to think I would suggest a meeting here, of all places? I solemnly swear that I am up to no good. The things I do for love. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (10, 6, 53,
+        'You impossible fool. What possessed you to think I would suggest a meeting here, of all places? Of course it is happening inside your head, Harry, but why on earth should that mean that it is not real? Laughter is poison to fear. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (10, 7, 70,
+        'Not even last quarter''s storm could wake you. I heard them say we''ve reached Adulthood, I''m sure they''ll let us go. There are some things you can''t share without ending up liking each other, and knocking out a twelve-foot mountain troll is one of them. Nothing burns like the cold. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (10, 8, 14,
+        'Remember, your mind is the best weapon you have. It is our choices, Harry, that show what we truly are, far more than our abilities. A lion doesn''t concern itself with the opinion of sheep. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (10, 9, 46,
+        'I''m not a man, I''m a weapon in human form. Never trust anything that can think for itself if you can''t see where it keeps its brain. The North remembers. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (10, 10, 23,
+        'Sheggorath, you are the Skooma Cat, for what is crazier than a cat on skooma? It is the unknown we fear when we look upon death and darkness, nothing more. Things are not always as they seemed, much that may seem evil can be good. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (10, 11, 79,
+        'The results of hard work and dedication always look like luck. But you know you''ve earned every ounce of your success. We could all have been killed - or worse, expelled. Once you’ve accepted your flaws, no one can use them against you. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (11, 0, 78,
+        'STOP RIGHT THERE YOU CRIMINAL SCUM! It’s wingardium leviOsa, not leviosAH. Some old wounds never truly heal, and bleed again at the slightest word. Damn, Eskel... you got an hourglass figure');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (11, 1, 54,
+        'The best techniques are passed on by the survivors. It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends. Why is it that when one man builds a wall, the next man immediately needs to know what''s on the other side? You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (11, 2, 78,
+        'Candy, candy -- he makes so much. Uncle Sweetshare has a magic touch! So it''s back to the workshop in the snow! With lovely lanterns all aglow! He he! Ha ho! He he he ha ha ho! Never trust anything that can think for itself if you can''t see where it keeps its brain. ... a mind needs books as a sword needs a whetstone, if it is to keep its edge. Hide the wenches, Witcher''s coming!!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (11, 3, 10,
+        'You plod along, putting one foot before the other, look up, and suddenly, there you are. Right where you wanted to be all along. If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals. Nothing burns like the cold. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (11, 4, 47,
+        'Why walk when you can ride? If you want to know what a man’s like, take a good look at how he treats his inferiors, not his equals. Winter is coming. You get what you get and be happy with it');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (11, 5, 66,
+        'Treasure the gifts of friendship. Seek joy and inspiration in the mysteries of love. Harry, suffering like this proves you are still a man! This pain is part of being human...the fact that you can feel pain like this is your greatest strength. Once you’ve accepted your flaws, no one can use them against you. Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (11, 6, 97,
+        'Wake up. We''re here. Why are you shaking? Are you okay? Wake up. We could all have been killed - or worse, expelled. Once you’ve accepted your flaws, no one can use them against you. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (11, 7, 46,
+        'You impossible fool. What possessed you to think I would suggest a meeting here, of all places? There are some things you can''t share without ending up liking each other, and knocking out a twelve-foot mountain troll is one of them. Every flight begins with a fall. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (11, 8, 2,
+        'The best techniques are passed on by the survivors. It is our choices, Harry, that show what we truly are, far more than our abilities. Nothing burns like the cold. Just five more minutes… Is it 1358 yet? No? Then fuck off!');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (11, 9, 2,
+        'The results of hard work and dedication always look like luck. But you know you''ve earned every ounce of your success. To the well-organized mind, death is but the next great adventure. Once you’ve accepted your flaws, no one can use them against you. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (11, 10, 43,
+        'Change will preserve us! It is the lifeblood of the world. It will move mountains! It will mount movements! You sort of start thinking anything’s possible if you’ve got enough nerve. Do the dead frighten you? Oh year... the Elder Blood can be fiery');
+
+insert into compatibilities(zodiac1_type, zodiac2_type, compatibility_value, text_value)
+values (11, 11, 98,
+        'Let me guess, somebody stole your sweetroll. After all this time? Always. And so he spoke, and so he spoke, that Lord of Castamere, but now the rains weep o''er his hall, with no one there to hear. Yes, now the rains weep o''er his hall, and not a soul to hear. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.');
+
+-- End
+
+-- Haircuts
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (7, '1, 2 Moon day', 'Waxing moon',
+        'You plod along, putting one foot before the other, look up, and suddenly, there you are. Right where you wanted to be all along. Harry, suffering like this proves you are still a man! This pain is part of being human...the fact that you can feel pain like this is your greatest strength. Once you’ve accepted your flaws, no one can use them against you. Damn, Eskel... you got an hourglass figure',
+        false);
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (7, '2, 3 Moon day', 'Waxing moon',
+        'Children, listen as the shadows cross your sleeping hutch, And the village sleeps away, streets emptied of the crowds, And the moons do balefully glare through the nightly clouds, And the graveyard''s people rest, we hope, in eternal sleep, Listen and you''ll hear the whispered tap of the footsteps creep, Then pray you''ll never feel the Worm King''s awful touch. Words are in my not-so-humble opinion, the most inexhaustible form of magic we have, capable both of inflicting injury and remedying it. Power is a curious thing. Who lives, Who dies. Power resides where men believe it resides. It is a trick, A shadow on the wall. Oh year... the Elder Blood can be fiery',
+        false);
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (7, '3, 4 Moon day', 'Waxing moon',
+        'May your roads lead to warm sands. Things we lose have a way of coming back to us in the end, if not always in the way we expect. All dwarfs are bastards in their father''s eyes I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat',
+        true);
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (8, '4, 5 Moon day', 'Waxing moon',
+        'Use Nature''s gifts wisely. Respect her power, and fear her fury. Harry, suffering like this proves you are still a man! This pain is part of being human...the fact that you can feel pain like this is your greatest strength. Every flight begins with a fall. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.',
+        true);
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (8, '5, 6 Moon day', 'Waxing moon',
+        'I''m not a man, I''m a weapon in human form. Things we lose have a way of coming back to us in the end, if not always in the way we expect. And so he spoke, and so he spoke, that Lord of Castamere, but now the rains weep o''er his hall, with no one there to hear. Yes, now the rains weep o''er his hall, and not a soul to hear. Damn, Eskel... you got an hourglass figure',
+        false);
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (8, '6, 7 Moon day', 'Waxing moon',
+        'My father taught me an important lesson many years ago. He said, ''Gwinlin, you have the whole world before you. Go out and experience it... be whatever you want to be.'' So I took his advice, and here I am. This life might not look like much to you, but I''m content, and isn''t that all that matters? Harry, suffering like this proves you are still a man! This pain is part of being human...the fact that you can feel pain like this is your greatest strength. The things I do for love. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.',
+        false);
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (9, '7, 8 Moon day', 'Waxing moon',
+        'Change will preserve us! It is the lifeblood of the world. It will move mountains! It will mount movements! There are some things you can''t share without ending up liking each other, and knocking out a twelve-foot mountain troll is one of them. When the snows fall and the white winds blow, the lone wolf dies but the pack survives. Just five more minutes… Is it 1358 yet? No? Then fuck off!',
+        false);
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (9, '8, 9 Moon day', 'Waning moon',
+        'Hey, there''s my new pal! So what can I do for you? Need some items? Or maybe you ready to unload something? Whatever you need! You sort of start thinking anything’s possible if you’ve got enough nerve. There are no heroes...in life, the monsters win. No Lollygagin''!',
+        true);
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (9, '9, 10 Moon day', 'Waning moon',
+        'Can''t wait to count out your coin! Of course it is happening inside your head, Harry, but why on earth should that mean that it is not real? When you play a game of thrones you win or you die. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.',
+        false);
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (10, '10, 11 Moon day', 'Waning moon',
+        'Not even last quarter''s storm could wake you. I heard them say we''ve reached Adulthood, I''m sure they''ll let us go. It takes a great deal of bravery to stand up to our enemies, but just as much to stand up to our friends. When you play a game of thrones you win or you die. Just five more minutes… Is it 1358 yet? No? Then fuck off!',
+        true);
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (10, '11, 12 Moon day', 'Waning moon',
+        'I still don''t know if there is a divine plan, but I''ve come to realize that it doesn''t matter. What matters is that we act; that we do what''s right when confronted with evil. That''s what you did at Kvatch. It wasn''t the gods that saved us, it was you. Just because you have the emotional range of a teaspoon doesn’t mean we all have. Summer will end soon enough, and childhood as well. Finish all your business before you die. Bid loved ones farewell. Write your will. Apologize to those you’ve wronged. Otherwise, you’ll never truly leave this world.',
+        true);
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (10, '12, 13 Moon day', 'Waning moon',
+        'Stupid bees and their stupid honey! Dark and difficult times lie ahead. Soon we must all face the choice between what is right and what is easy. Why is it that when one man builds a wall, the next man immediately needs to know what''s on the other side? I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat',
+        false);
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (11, '13, 14 Moon day', 'Waning moon',
+        'Quiet, here comes the guard. You better do what they say. There are some things you can''t share without ending up liking each other, and knocking out a twelve-foot mountain troll is one of them. Summer will end soon enough, and childhood as well. Oh year... the Elder Blood can be fiery',
+        false);
+
+insert into haircuts(zodiac_type, moon_day, moon_phase, prediction, is_positive)
+values (11, '14, 15 Moon day', 'Waning moon',
+        'Wake up. We''re here. Why are you shaking? Are you okay? Wake up. We could all have been killed - or worse, expelled. A lion doesn''t concern itself with the opinion of sheep. I''ll stick me boot so far up yer arse your tongue''ll taste like wench twat',
+        false);
+
+-- End Haircuts
+
+select *
+from compatibilities;
+
+update compatibilities
+set compatibility_value = 228,
+    text_value          = 'idi nahui'
+where zodiac1_type = 10
+  and zodiac2_type = 11;
 
 -- select *
 -- from zodiacs;

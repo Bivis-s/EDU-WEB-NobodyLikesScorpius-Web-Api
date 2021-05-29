@@ -15,11 +15,11 @@
 <body>
 <div data-speed="3" class="parallax-layer"></div>
 <main>
-    <a href="../zodiacs.html"><h2>Predictions</h2></a>
+    <a href="../zodiacs.html"><h2>Предсказания</h2></a>
     <article>
         <div id="prediction_section">
             <label>
-                <textarea cols="64" rows="16" name="Text" placeholder="Enter new prediction text"></textarea>
+                <textarea cols="64" rows="16" name="Text" placeholder="Введите новое предсказание"></textarea>
             </label>
             <br>
             <label>
@@ -29,28 +29,28 @@
                 <select id="timeInterval" name="TimeInterval" onchange="updatePredictionText()"></select>
             </label>
             <br>
-            <button onclick="updatePredictionInDb()">Submit</button>
+            <button onclick="updatePredictionInDb()">Отправить</button>
         </div>
         <a href="#" id="goToHoroscopeButton">
-            <button>Go to this horoscope</button>
+            <button>Перейти к предсказанию</button>
         </a>
         <p id="successMessage"></p>
-        <h4>Current prediction text:</h4>
+        <h4>Текущий текст предсказания:</h4>
         <div id="prediction_text"></div>
     </article>
     <hr>
-    <a href="../compatibility.html"><h2>Compatibility</h2></a>
+    <a href="../compatibility.html"><h2>Совместимости</h2></a>
     <article>
         <div id="compatibilities_section">
             <label>
-                <textarea cols="64" rows="8" name="CompatibilityText" placeholder="Enter new compatibility text"></textarea>
+                <textarea cols="64" rows="8" name="CompatibilityText" placeholder="Введите новый текст совместимости"></textarea>
             </label>
             <br>
                 <table id="compatibility_value_container">
                     <tbody>
                     <tr>
-                        <td><b>Compatibility: </b></td>
-                        <td><input id="compatibility_value_input" name="Zodiac" title="Compatibility value"/></td>
+                        <td><b>Совместимость: </b></td>
+                        <td><input id="compatibility_value_input" name="Zodiac" title="Значение совместимости, %"/></td>
                         <td><b> %</b></td>
                     </tr>
                     </tbody>
@@ -65,14 +65,14 @@
                         onchange="updateCompatibilitiesText()"></select>
             </label>
             <br>
-            <button onclick="updateCompatibilityInDb()">Submit</button>
+            <button onclick="updateCompatibilityInDb()">Отправить</button>
             <p id="compatibilitiesSuccessMessage"></p>
-            <h4>Current compatibility text:</h4>
+            <h4>Текущий текст совместимости:</h4>
             <div id="compatibilities_text"></div>
         </div>
     </article>
     <hr>
-    <a href="../haircuts.html"><h2>Haircuts</h2></a>
+    <a href="../haircuts.html"><h2>Календарь стрижек</h2></a>
     <article>
         <table id="haircut_table">
             <tbody></tbody>
