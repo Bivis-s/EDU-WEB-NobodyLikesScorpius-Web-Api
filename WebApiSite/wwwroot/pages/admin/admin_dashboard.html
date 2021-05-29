@@ -43,7 +43,7 @@
     <article>
         <div id="compatibilities_section">
             <label>
-                <textarea cols="64" rows="8" name="Text" placeholder="Enter new compatibility text"></textarea>
+                <textarea cols="64" rows="8" name="CompatibilityText" placeholder="Enter new compatibility text"></textarea>
             </label>
             <br>
                 <table id="compatibility_value_container">
@@ -64,7 +64,6 @@
                 <select class="inline_select" id="compatibilities_zodiac_2"
                         onchange="updateCompatibilitiesText()"></select>
             </label>
-
             <br>
             <button onclick="updateCompatibilityInDb()">Submit</button>
             <p id="compatibilitiesSuccessMessage"></p>

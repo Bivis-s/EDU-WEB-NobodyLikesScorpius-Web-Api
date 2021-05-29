@@ -6,13 +6,16 @@ namespace DatabaseConnection.entities
     [TableName("compatibilities")]
     public class Compatibility
     {
-        public Compatibility(Zodiac zodiac1, Zodiac zodiac2, int compatibilityValue, string textValue)
+        public Compatibility(int id, Zodiac zodiac1, Zodiac zodiac2, int compatibilityValue, string textValue)
         {
+            Id = id;
             Zodiac1 = zodiac1;
             Zodiac2 = zodiac2;
             CompatibilityValue = compatibilityValue;
             TextValue = textValue;
         }
+
+        [SerializableName("id")] public int Id { get; set; }
 
         [SerializableName("zodiac1_type")] public Zodiac Zodiac1 { get; set; }
 
@@ -50,6 +53,11 @@ namespace DatabaseConnection.entities
         public static string GetTableName()
         {
             return TableName.GetTableName(typeof(Compatibility));
+        }
+
+        public static string GetIdColumnName()
+        {
+            return SerializableName.GetSerializableName(typeof(Compatibility), "Id");
         }
 
         public static string GetZodiac1ColumnName()

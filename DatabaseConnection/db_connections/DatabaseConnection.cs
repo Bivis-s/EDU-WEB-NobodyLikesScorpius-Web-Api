@@ -368,12 +368,28 @@ namespace DatabaseConnection.db_connections
 
         #region Compatibilities
 
+        public Compatibility GetCompatibility(ZodiacType zodiacType1, ZodiacType zodiacType2)
+        {
+            using var command = _connection.CreateCommand();
+            command.Connection = _connection;
+            command.CommandText =
+                $"select {Compatibility.GetIdColumnName()}, {Compatibility.GetZodiac1ColumnName()}, {Compatibility.GetZodiac2ColumnName()}, " +
+                $"{Compatibility.GetCompatibilityValueColumnName()}, {Compatibility.GetTextValueColumnName()} " +
+                $"from {Compatibility.GetTableName()} " +
+                $"where {Compatibility.GetZodiac1ColumnName()} = :zodiac1Type " +
+                $"and {Compatibility.GetZodiac2ColumnName()} = :zodiac2Type;";
+            command.Parameters.AddWithValue("zodiac1Type", zodiacType1);
+            command.Parameters.AddWithValue("zodiac2Type", zodiacType2);
+            Console.WriteLine("Execute SQL: " + command.CommandText);
+            return Factory.CreateCompatibility(command.ExecuteReader(), this);
+        }
+
         public List<Compatibility> GetCompatibilities()
         {
             using var command = _connection.CreateCommand();
             command.Connection = _connection;
             command.CommandText =
-                $"select {Compatibility.GetZodiac1ColumnName()}, {Compatibility.GetZodiac2ColumnName()}, " +
+                $"select {Compatibility.GetIdColumnName()}, {Compatibility.GetZodiac1ColumnName()}, {Compatibility.GetZodiac2ColumnName()}, " +
                 $"{Compatibility.GetCompatibilityValueColumnName()}, {Compatibility.GetTextValueColumnName()} " +
                 $"from {Compatibility.GetTableName()};";
             Console.WriteLine("Execute SQL: " + command.CommandText);
@@ -388,12 +404,10 @@ namespace DatabaseConnection.db_connections
                 $"update {Compatibility.GetTableName()} " +
                 $"set {Compatibility.GetCompatibilityValueColumnName()} = :compatibilityValue, " +
                 $"{Compatibility.GetTextValueColumnName()} = :textValue " +
-                $"where {Compatibility.GetZodiac1ColumnName()} = zodiacId1: " +
-                $"and  {Compatibility.GetZodiac1ColumnName()} = :zodiacId2;";
+                $"where {Compatibility.GetIdColumnName()} = :id;";
             command.Parameters.AddWithValue("compatibilityValue", compatibility.CompatibilityValue);
             command.Parameters.AddWithValue("textValue", compatibility.TextValue);
-            command.Parameters.AddWithValue("zodiacId1", compatibility.Zodiac1.Id);
-            command.Parameters.AddWithValue("zodiacId2", compatibility.Zodiac2.Id);
+            command.Parameters.AddWithValue("id", compatibility.Id);
             Console.WriteLine("Execute SQL: " + command.CommandText);
             command.ExecuteNonQuery();
         }

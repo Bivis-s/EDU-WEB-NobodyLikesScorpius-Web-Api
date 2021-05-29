@@ -76,22 +76,33 @@ namespace DatabaseConnection.factories
             db_connections.DatabaseConnection databaseConnection)
         {
             var compatibilities = new List<Compatibility>();
-            while (dataReader.Read())
-            {
-                var zodiacId1 = dataReader.GetInt32(0);
-                var zodiacId2 = dataReader.GetInt32(1);
-                var compatibilityValue = dataReader.GetInt32(2);
-                var textValue = dataReader.GetString(3);
-                compatibilities.Add(new Compatibility(
-                        databaseConnection.GetZodiac(zodiacId1),
-                        databaseConnection.GetZodiac(zodiacId2),
-                        compatibilityValue,
-                        textValue
-                    )
-                );
-            }
+            while (dataReader.Read()) compatibilities.Add(PrivateCreateCompatibility(dataReader, databaseConnection));
 
             return compatibilities;
+        }
+
+        public static Compatibility CreateCompatibility(SQLiteDataReader dataReader,
+            db_connections.DatabaseConnection databaseConnection)
+        {
+            dataReader.Read();
+            return PrivateCreateCompatibility(dataReader, databaseConnection);
+        }
+
+        private static Compatibility PrivateCreateCompatibility(SQLiteDataReader dataReader,
+            db_connections.DatabaseConnection databaseConnection)
+        {
+            var id = dataReader.GetInt32(0);
+            var zodiacId1 = dataReader.GetInt32(1);
+            var zodiacId2 = dataReader.GetInt32(2);
+            var compatibilityValue = dataReader.GetInt32(3);
+            var textValue = dataReader.GetString(4);
+            return new Compatibility(
+                id,
+                databaseConnection.GetZodiac((ZodiacType) zodiacId1),
+                databaseConnection.GetZodiac((ZodiacType) zodiacId2),
+                compatibilityValue,
+                textValue
+            );
         }
     }
 }

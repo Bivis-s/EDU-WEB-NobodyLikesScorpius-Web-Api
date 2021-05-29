@@ -74,6 +74,11 @@ namespace DatabaseConnection
             return GetDatabaseConnection().GetHaircuts();
         }
 
+        public Compatibility GetCompatibility(ZodiacType zodiac1Type, ZodiacType zodiac2Type)
+        {
+            return GetDatabaseConnection().GetCompatibility(zodiac1Type, zodiac2Type);
+        }
+
         public List<Compatibility> GetCompatibilities()
         {
             return GetDatabaseConnection().GetCompatibilities();

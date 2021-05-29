@@ -32,6 +32,8 @@ namespace DatabaseConnection.db_connections
 
         List<Haircut> GetHaircuts();
 
+        Compatibility GetCompatibility(ZodiacType zodiac1Type, ZodiacType zodiac2Type);
+
         List<Compatibility> GetCompatibilities();
 
         void SaveOrUpdate(Compatibility compatibility);

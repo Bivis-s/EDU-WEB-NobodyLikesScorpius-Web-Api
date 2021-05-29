@@ -1,4 +1,7 @@
-﻿//get zodiac options
+﻿// update text for compatibilities on page AT START
+updateCompatibilitiesText();
+
+//get zodiac options
 let zodiacOptions = "";
 getZodiacs().then((data) => {
     data.forEach((zodiac) => {
@@ -187,5 +190,49 @@ function updateCompatibilitiesText() {
     });
 }
 
-// update text for compatibilities on page AT START
-updateCompatibilitiesText();
+// update Compatibility in db when 'Submit' button in Compatibility section is clicked
+async function updateCompatibilityInDb() {
+    // let zodiacType1 = document.querySelector("#compatibilities_zodiac_1").value;
+    // let zodiacType2 = document.querySelector("#compatibilities_zodiac_2").value;
+    let compatibilityValue = document.querySelector("#compatibility_value_input").value;
+    let textValue = document.querySelector("*[name=CompatibilityText]").value;
+    let sessionToken = getParamFromUrl("sessionToken");
+
+    let selectedZodiacType1Option = $("#compatibilities_zodiac_1 option:selected");
+    let selectedZodiacType2Option = $("#compatibilities_zodiac_2 option:selected");
+
+    let body = JSON.stringify({
+        ZodiacType1: selectedZodiacType1Option.val(),
+        ZodiacType2: selectedZodiacType2Option.val(),
+        CompatibilityValue: compatibilityValue,
+        Text: textValue,
+        SessionToken: sessionToken
+    });
+
+    console.log("Body: " + body);
+
+    await fetch("http://127.0.0.1:3505/UpdateCompatibility",
+        {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: body
+        }
+    ).then((response) => {
+        if (response.ok) {
+            showSuccessCompatibilityUpdateMessage(selectedZodiacType1Option.text(), selectedZodiacType2Option.text());
+            updateCompatibilitiesText();
+        } else {
+            console.log("Cannot get is admin authorized from db, status code: " + response.status);
+            window.location.href = "admin_dashboard.html?sessionToken=" + sessionToken + "&success=false";
+        }
+    });
+}
+
+function showSuccessCompatibilityUpdateMessage(zodiac1Name, zodiac2Name) {
+    let compatibilitiesSuccessMessage = document.querySelector("#compatibilitiesSuccessMessage");
+    compatibilitiesSuccessMessage.style.display = "block";
+    compatibilitiesSuccessMessage.innerHTML = "Compatibility successfully updated for <br>Zodiac #1: <strong>" + zodiac1Name +
+        "</strong> and Zodiac #2: : <strong>" + zodiac2Name + "</strong>";
+}
