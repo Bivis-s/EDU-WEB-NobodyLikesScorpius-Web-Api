@@ -29,4 +29,5 @@ select {
     font-family: Cormorant Garamond, serif;
     text-indent: 2em;
     text-shadow: 0 0 8px black, 0 0 11px black;
+    white-space: pre-line;
 }

@@ -85,3 +85,7 @@ td {
 #compatibility_value_container td:nth-child(3) {
     text-align: start;
 }
+
+#compatibilities_text {
+    white-space: pre-line;
+}
