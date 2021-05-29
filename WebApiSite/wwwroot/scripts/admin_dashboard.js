@@ -101,7 +101,7 @@ async function updatePredictionInDb() {
 function showSuccessMessage(zodiacName, timeIntervalName) {
     let predictionTextarea = document.querySelector("#successMessage");
     predictionTextarea.style.display = "block";
-    predictionTextarea.innerHTML = "Предсказание успешно обновлено <br>Зодиак: <strong>" + zodiacName +
+    predictionTextarea.innerHTML = "Гороскоп успешно обновлён <br>Зодиак: <strong>" + zodiacName +
         "</strong>, временной промежуток: <strong>" + timeIntervalName + "</strong>";
 }
 
@@ -141,11 +141,11 @@ getHaircuts().then((haircuts) => {
             "<td><textarea title='Haircut prediction' name='Prediction' form='" + formId + "'>" + haircut.prediction + "</textarea></td>" +
 
             // is positive checkbox column
-            "<td><p>Is positive</p>" + getCheckbox(haircut.isPositive, "IsPositive", formId) + "</td>" +
+            "<td><p>Хороший день?</p>" + getCheckbox(haircut.isPositive, "IsPositive", formId) + "</td>" +
 
             // submit button checkbox
             "<td><button id ='" + "sumbit_button" + haircut.id + "' class='submitHaircutButton' " +
-            "onclick='subForm(\"" + "#" + formId + "\",\"" + "#sumbit_button" + haircut.id + "\")'> " + "Sumbit" + "</button> " +
+            "onclick='subForm(\"" + "#" + formId + "\",\"" + "#sumbit_button" + haircut.id + "\")'> " + "Сохранить" + "</button> " +
             "</td>" +
 
             "</tr>" +

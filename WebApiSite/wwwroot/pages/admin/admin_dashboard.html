@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin dashboard</title>
+    <title>Панель управления администратора</title>
     <link rel="stylesheet" href="../../styles/main.css">
     <link rel="stylesheet" href="../../styles/admin.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
@@ -15,11 +15,11 @@
 <body>
 <div data-speed="3" class="parallax-layer"></div>
 <main>
-    <a href="../zodiacs.html"><h2>Предсказания</h2></a>
+    <a href="../zodiacs.html"><h2>Горокопы</h2></a>
     <article>
         <div id="prediction_section">
             <label>
-                <textarea cols="64" rows="16" name="Text" placeholder="Введите новое предсказание"></textarea>
+                <textarea cols="64" rows="16" name="Text" placeholder="Введите новый гороскоп"></textarea>
             </label>
             <br>
             <label>
@@ -32,10 +32,10 @@
             <button onclick="updatePredictionInDb()">Отправить</button>
         </div>
         <a href="#" id="goToHoroscopeButton">
-            <button>Перейти к предсказанию</button>
+            <button>Перейти к гороскопу</button>
         </a>
         <p id="successMessage"></p>
-        <h4>Текущий текст предсказания:</h4>
+        <h4>Текущий текст горокопа:</h4>
         <div id="prediction_text"></div>
     </article>
     <hr>
