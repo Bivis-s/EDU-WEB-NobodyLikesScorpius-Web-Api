@@ -64,38 +64,38 @@ insert into admins (name, password)
 values ('admin', 'qwe12345');
 
 insert into zodiacs (name, enum_number)
-values ('Aries', 0);
+values ('Овен', 0);
 insert into zodiacs (name, enum_number)
-values ('Taurus', 1);
+values ('Телец', 1);
 insert into zodiacs (name, enum_number)
-values ('Gemini', 2);
+values ('Близнецы', 2);
 insert into zodiacs (name, enum_number)
-values ('Cancer', 3);
+values ('Рак', 3);
 insert into zodiacs (name, enum_number)
-values ('Leo', 4);
+values ('Лев', 4);
 insert into zodiacs (name, enum_number)
-values ('Virgo', 5);
+values ('Дева', 5);
 insert into zodiacs (name, enum_number)
-values ('Libra', 6);
+values ('Весы', 6);
 insert into zodiacs (name, enum_number)
-values ('Scorpius', 7);
+values ('Скорпион', 7);
 insert into zodiacs (name, enum_number)
-values ('Sagittarius', 8);
+values ('Стрелец', 8);
 insert into zodiacs (name, enum_number)
-values ('Capricorn', 9);
+values ('Козерог', 9);
 insert into zodiacs (name, enum_number)
-values ('Aquarius', 10);
+values ('Водолей', 10);
 insert into zodiacs (name, enum_number)
-values ('Pisces', 11);
+values ('Рыбы', 11);
 
 insert into time_intervals (name, enum_number)
-values ('Today''s horoscope', 0);
+values ('Сегодня', 0);
 insert into time_intervals (name, enum_number)
-values ('Tomorrow''s horoscope', 1);
+values ('Завтра', 1);
 insert into time_intervals (name, enum_number)
-values ('Weekly horoscope', 2);
+values ('Неделя', 2);
 insert into time_intervals (name, enum_number)
-values ('Monthly horoscope', 3);
+values ('Месяц', 3);
 
 -- Predictions
 

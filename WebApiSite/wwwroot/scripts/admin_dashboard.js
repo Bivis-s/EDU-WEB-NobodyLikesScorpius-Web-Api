@@ -101,8 +101,8 @@ async function updatePredictionInDb() {
 function showSuccessMessage(zodiacName, timeIntervalName) {
     let predictionTextarea = document.querySelector("#successMessage");
     predictionTextarea.style.display = "block";
-    predictionTextarea.innerHTML = "Prediction successfully updated for <br>Zodiac: <strong>" + zodiacName +
-        "</strong> and Time Interval: <strong>" + timeIntervalName + "</strong>";
+    predictionTextarea.innerHTML = "Предсказание успешно обновлено <br>Зодиак: <strong>" + zodiacName +
+        "</strong>, временной промежуток: <strong>" + timeIntervalName + "</strong>";
 }
 
 function updateGoToHoroscopeButton(zodiacNumber, timeIntervalNumber) {

@@ -11,6 +11,7 @@ h1 {
     margin: auto;
     font-size: 40px;
     text-shadow: 0 0 8px darkblue, 0 0 3px black;
+    white-space: pre;
 }
 
 h2 {

@@ -55,9 +55,9 @@ async function getZodiacNameFromDb(zodiacTypeNumber) {
 }
 
 function getMonthNameByDate(date) {
-    return date.toLocaleString('en', {month: 'long'});
+    return date.toLocaleString('ru', {month: 'long'});
 }
 
 function getDayOFWeekNameByDate(date) {
-    return date.toLocaleString('en', {weekday: 'long'});
+    return date.toLocaleString('ru', {weekday: 'long'});
 }
