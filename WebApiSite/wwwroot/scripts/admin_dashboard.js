@@ -130,7 +130,7 @@ getHaircuts().then((haircuts) => {
             "<tr>" +
 
             // moon sign column
-            "<td> The moon is in sign <br><select name='ZodiacId' form='" + formId + "'><option value='" + haircut.zodiac.id + "'>" +
+            "<td> Луна в знаке <br><select name='ZodiacId' form='" + formId + "'><option value='" + haircut.zodiac.id + "'>" +
             haircut.zodiac.name + "</option>" + zodiacOptions + "</select></td>" +
 
             // moon day and moon phase column
@@ -233,6 +233,6 @@ async function updateCompatibilityInDb() {
 function showSuccessCompatibilityUpdateMessage(zodiac1Name, zodiac2Name) {
     let compatibilitiesSuccessMessage = document.querySelector("#compatibilitiesSuccessMessage");
     compatibilitiesSuccessMessage.style.display = "block";
-    compatibilitiesSuccessMessage.innerHTML = "Compatibility successfully updated for <br>Zodiac #1: <strong>" + zodiac1Name +
-        "</strong> and Zodiac #2: : <strong>" + zodiac2Name + "</strong>";
+    compatibilitiesSuccessMessage.innerHTML = "Совместимость успешно обновлена <br>Зодиак #1: <strong>" + zodiac1Name +
+        "</strong> Зодиак #2: : <strong>" + zodiac2Name + "</strong>";
 }

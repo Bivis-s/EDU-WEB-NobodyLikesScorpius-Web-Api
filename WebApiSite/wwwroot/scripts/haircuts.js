@@ -7,7 +7,7 @@ getHaircuts().then((haircuts) => {
         haircutRows += "<tr>" +
             "<td><b>" + haircutPredictionDate.getDate() + "</b> " + getMonthNameByDate(haircutPredictionDate) + "<br>" 
             + getDayOFWeekNameByDate(haircutPredictionDate) + "</td>" +
-            "<td> The moon is in sign <b>" + haircut.zodiac.name + "</b></td>" +
+            "<td> Луна в знаке <b>" + haircut.zodiac.name + "</b></td>" +
             "<td><p>" + haircut.moonDay + "</p><p>" + haircut.moonPhase + "</p></td>" +
             "<td>" + getHaircutPositiveNegativeEmoji(haircut.isPositive) + " " + haircut.prediction + "</td>" +
             "</tr>";
