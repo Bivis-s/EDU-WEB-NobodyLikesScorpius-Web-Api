@@ -9,7 +9,7 @@ getZodiacs().then((data) => {
     })
 });
 
-//update textwhen page opened
+//update text when page opened
 getPredictionFromDb(0, 0).then((prediction) => {
     let predictionTextarea = document.querySelector("#prediction_text");
     predictionTextarea.innerHTML = prediction.text;

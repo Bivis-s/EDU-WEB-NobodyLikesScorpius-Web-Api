@@ -4,8 +4,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiSite", "WebApiSite\We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseConnection", "DatabaseConnection\DatabaseConnection.csproj", "{F1D1166F-82F6-46A3-A6E1-0D05B850A2B1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseConnectionTest", "DatabaseConnectionTest\DatabaseConnectionTest.csproj", "{FA2520CC-59A1-4F60-B833-FCC15139E0C1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -20,9 +18,5 @@ Global
 		{F1D1166F-82F6-46A3-A6E1-0D05B850A2B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1D1166F-82F6-46A3-A6E1-0D05B850A2B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1D1166F-82F6-46A3-A6E1-0D05B850A2B1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA2520CC-59A1-4F60-B833-FCC15139E0C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA2520CC-59A1-4F60-B833-FCC15139E0C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA2520CC-59A1-4F60-B833-FCC15139E0C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA2520CC-59A1-4F60-B833-FCC15139E0C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
