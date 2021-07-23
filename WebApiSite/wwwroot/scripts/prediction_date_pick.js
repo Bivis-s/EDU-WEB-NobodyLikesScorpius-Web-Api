@@ -23,7 +23,7 @@ for (let element of elements) {
 }
 
 async function getTimeIntervalNameFromDb(timeIntervalTypeNumber) {
-    let apiResponse = await fetch("http://127.0.0.1:3505/TimeInterval/details?timeIntervalNumber=" + timeIntervalTypeNumber);
+    let apiResponse = await fetch("http://10.0.0.4:3505/TimeInterval/details?timeIntervalNumber=" + timeIntervalTypeNumber);
     if (apiResponse.ok) {
         return await apiResponse.json();
     } else {
@@ -32,7 +32,7 @@ async function getTimeIntervalNameFromDb(timeIntervalTypeNumber) {
 }
 
 async function getZodiacNameFromDb(zodiacTypeNumber) {
-    let apiResponse = await fetch("http://127.0.0.1:3505/Zodiac/details?zodiacNumber=" + zodiacTypeNumber);
+    let apiResponse = await fetch("http://10.0.0.4:3505/Zodiac/details?zodiacNumber=" + zodiacTypeNumber);
     if (apiResponse.ok) {
         return await apiResponse.json();
     } else {

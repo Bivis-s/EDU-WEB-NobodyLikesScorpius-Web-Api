@@ -34,7 +34,7 @@ function getHaircutPositiveNegativeEmoji(isPositive) {
 }
 
 async function getHaircuts() {
-    let apiResponse = await fetch("http://127.0.0.1:3505/GetHaircuts");
+    let apiResponse = await fetch("http://10.0.0.4:3505/GetHaircuts");
     if (apiResponse.ok) {
         return await apiResponse.json();
     } else {

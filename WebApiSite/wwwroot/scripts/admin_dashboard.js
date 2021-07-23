@@ -53,7 +53,7 @@ function updatePredictionText() {
 }
 
 async function getIsAdminAuthorized(sessionToken) {
-    let apiResponse = await fetch("http://127.0.0.1:3505/IsAdminAuthorized?sessionToken=" + sessionToken);
+    let apiResponse = await fetch("http://10.0.0.4:3505/IsAdminAuthorized?sessionToken=" + sessionToken);
     if (apiResponse.ok) {
         return await apiResponse.json();
     } else {
@@ -79,7 +79,7 @@ async function updatePredictionInDb() {
 
     console.log(zodiac + " " + timeInterval + " " + textValue + " " + sessionToken + "\nBody: " + body);
 
-    await fetch("http://127.0.0.1:3505/UpdatePrediction",
+    await fetch("http://10.0.0.4:3505/UpdatePrediction",
         {
             method: 'POST',
             headers: {
@@ -106,13 +106,13 @@ function showSuccessMessage(zodiacName, timeIntervalName) {
 }
 
 function updateGoToHoroscopeButton(zodiacNumber, timeIntervalNumber) {
-    $("#goToHoroscopeButton").attr("href", "http://127.0.0.1:3505/pages/prediction.html?type=" + zodiacNumber + "&time=" + timeIntervalNumber);
+    $("#goToHoroscopeButton").attr("href", "http://10.0.0.4:3505/pages/prediction.html?type=" + zodiacNumber + "&time=" + timeIntervalNumber);
 }
 
 // HAIRCUTS
 
 async function getHaircuts() {
-    let apiResponse = await fetch("http://127.0.0.1:3505/GetHaircuts");
+    let apiResponse = await fetch("http://10.0.0.4:3505/GetHaircuts");
     if (apiResponse.ok) {
         return await apiResponse.json();
     } else {
@@ -211,7 +211,7 @@ async function updateCompatibilityInDb() {
 
     console.log("Body: " + body);
 
-    await fetch("http://127.0.0.1:3505/UpdateCompatibility",
+    await fetch("http://10.0.0.4:3505/UpdateCompatibility",
         {
             method: 'POST',
             headers: {

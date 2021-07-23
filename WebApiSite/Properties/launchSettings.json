@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "applicationUrl": "http://127.0.0.1:3505",
+      "applicationUrl": "http://10.0.0.4:3505",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
@@ -21,7 +21,7 @@
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
-      "applicationUrl": "http://127.0.0.1:3505",
+      "applicationUrl": "http://10.0.0.4:3505",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
