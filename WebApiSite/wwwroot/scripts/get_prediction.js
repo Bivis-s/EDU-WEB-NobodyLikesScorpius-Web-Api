@@ -1,5 +1,5 @@
 ﻿async function getPredictionFromDb(zodiacNumber, timeInterval) {
-    let apiResponse = await fetch("http://10.0.0.4:3505/Prediction/details?zodiacNumber=" + zodiacNumber + "&timeInterval=" + timeInterval);
+    let apiResponse = await fetch("http://168.63.68.254:3505/Prediction/details?zodiacNumber=" + zodiacNumber + "&timeInterval=" + timeInterval);
     if (apiResponse.ok) {
         return await apiResponse.json();
     } else {

@@ -1,5 +1,5 @@
 ﻿async function getTimeIntervals() {
-    let apiResponse = await fetch("http://10.0.0.4:3505/GetTimeIntervals");
+    let apiResponse = await fetch("http://168.63.68.254:3505/GetTimeIntervals");
     if (apiResponse.ok) {
         return await apiResponse.json();
     } else {

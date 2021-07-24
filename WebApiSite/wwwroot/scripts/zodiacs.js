@@ -17,7 +17,7 @@ for (let element of elements) {
 }
 
 async function getZodiacNameFromDb(zodiacTypeNumber) {
-    let apiResponse = await fetch("http://10.0.0.4:3505/Zodiac/details?zodiacNumber=" + zodiacTypeNumber);
+    let apiResponse = await fetch("http://168.63.68.254:3505/Zodiac/details?zodiacNumber=" + zodiacTypeNumber);
     if (apiResponse.ok) {
         return await apiResponse.json();
     } else {

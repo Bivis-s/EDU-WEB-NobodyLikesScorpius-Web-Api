@@ -1,5 +1,5 @@
 ﻿async function getZodiacs() {
-    let apiResponse = await fetch("http://10.0.0.4:3505/GetZodiacs");
+    let apiResponse = await fetch("http://168.63.68.254:3505/GetZodiacs");
     if (apiResponse.ok) {
         return await apiResponse.json();
     } else {
